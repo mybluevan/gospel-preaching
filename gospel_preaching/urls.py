@@ -17,9 +17,11 @@ urlpatterns = patterns('',
     # Uncomment the next line to enable the admin:
     (r'^admin/(.*)', admin.site.root),
     (r'^$', 'master.views.index'),
-    (r'^site_media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
 #    (r'^socialregistration/', include('socialregistration.urls')),
 )
+
+if settings.STATIC_MEDIA_SERVER:
+    urlpatterns += patterns('',(r'^site_media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}))
 
 app_list = App.objects.all().exclude(slug__startswith='mailto:')
 for app in app_list:

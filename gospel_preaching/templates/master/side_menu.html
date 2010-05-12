@@ -18,6 +18,9 @@
 		{% endfor %}
         {% if request.user.is_authenticated %}
             <li><a href="{% url accounts.views.profile %}">Profile</a></li>
+            {% if request.user.is_staff %}
+                <li><a href="/admin/">Admin</a></li>
+            {% endif %}
             <li><a href="/accounts/logout/">Logout</a></li>
         {% else %}
             <li><a href="/accounts/login/">Login</a></li>
