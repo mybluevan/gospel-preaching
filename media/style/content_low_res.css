@@ -1,0 +1,37 @@
+.list_table
+{
+	width: 518px;
+}
+.list_item_odd, .list_item_even
+{
+	width: 496px;
+}
+.list_dates_media
+{
+	display: block
+}
+.list_date
+{
+	position: relative;
+	right: 0;
+}
+.list_orig_date
+{
+	position: absolute;
+	right: 0;
+	left: 7em;
+}
+.list_media
+{
+	position: absolute;
+	right:5px;
+}
+.list_title
+{
+	display: inline-block;
+	width: 20em;
+}
+.list_cat
+{
+	width: 10em;
+}

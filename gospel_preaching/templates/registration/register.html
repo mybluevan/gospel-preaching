@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block main %}
+<h2><a href="{% url accounts.views.register %}">User Registration</a></h2>
+<p>Your account will remain inactive until approved by an administrator.</p>
+<form action="" method="post" >
+<table>
+    {{form}}
+</table>
+<input type="submit" value="Submit" />
+</form>
+{% endblock %}

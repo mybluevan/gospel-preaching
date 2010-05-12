@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block css %}
+<link rel="stylesheet" href="{{ MEDIA_URL }}style/list_menu.css" type="text/css" />
+{% endblock %}
+
+{% block main %}
+    <div id="list_page_header">
+        <h2><a href="/{{ cur_app.slug }}">{{ cur_app.header }}</a></h2>
+        {{ cur_app.description|safe }}
+    </div>
+    {% include "articles/list.html" %}
+{% endblock %}

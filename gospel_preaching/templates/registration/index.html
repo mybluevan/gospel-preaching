@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block main %}
+    <div id="list_page_header">
+        <h2><a href="{% url accounts.views.index %}">User Profiles</a></h2>
+    </div>
+    {% if users %}
+        <div class="list_table">
+            {% include "helpers/navigation.html" %}
+	        <div class="list_header">
+		        <span class="list_user_username">Username</span>
+		        <span class="list_user_name">Name</span>
+	        </div>
+	    {% for user in users %}
+            <div class="list_item_{% cycle 'even' 'odd' %} list_item">
+	            <span class="list_user_username"><a href="{% url accounts.views.profile username=user.username %}">{{ user.username }}</a></span>
+	            <span class="list_user_name"><a href="{% url accounts.views.profile username=user.username %}">{{ user.first_name }} {{ user.last_name }}</a></span>
+            </div>
+	    {% endfor %}
+        {% include "helpers/navigation.html" %}
+        </div>
+    {% else %}
+        <p>No user profiles are available.</p>
+    {% endif %}
+{% endblock %}

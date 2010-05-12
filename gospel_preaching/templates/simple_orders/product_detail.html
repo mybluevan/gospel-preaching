@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load thumbnail %}
+
+{% block main %}
+<div id="product_page_header">
+	<h2><a href="{{ product.get_absolute_url }}">{{ product.title }}</a></h2>
+    {% if product.photo %}<img class="product_image" src="{{ product.photo|thumbnail:"200x200" }}" />{% endif %}
+	<table class="header_block">	
+		<tr><td>Price:</td><td>${{ product.price }}</td></tr>
+		<tr><td>Quantity Available:</td><td>{{ product.qoh }}</td></tr>
+        {% if cart_item %}<tr><td>Quantity in <a href="{% url simple_orders.views.update_cart %}" >Cart</a>:</td><td>{{ cart_item.quantity }}</td></tr>{% else %}
+		    {% if product.qoh %}<form action="{% url simple_orders.views.add_to_cart product.slug %}" method="post"><tr><td>Quantity: <input type="text" name="quantity" size=5 value="1"/></td><td><input type="submit" value="Add to Cart" /></td></tr></form>{% endif %}
+        {% endif %}
+	</table></div>
+	{{ product.description|safe }}
+{% endblock %}

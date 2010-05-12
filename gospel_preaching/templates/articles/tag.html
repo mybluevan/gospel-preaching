@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block css %}
+<link rel="stylesheet" href="{{ MEDIA_URL }}style/list_menu.css" type="text/css" />
+{% endblock %}
+
+{% block main %}
+    <div id="list_page_header">
+        <h2><a href="{{ tag.get_absolute_url }}">{{ tag }}</a></h2>
+    </div>
+    {% include "articles/list.html" %}
+{% endblock %}

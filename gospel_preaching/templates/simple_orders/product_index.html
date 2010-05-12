@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load thumbnail %}
+
+{% block main %}
+    <div id="list_page_header">
+        <h2><a href="/{{ cur_app.slug }}">{{ cur_app.header }}</a></h2>
+        {{ cur_app.description|safe }}
+    </div>
+    {% if products %}
+        <div class="list_table">
+            {% include "helpers/navigation.html" %}
+	        <div class="list_header">
+		        <span class="list_product_price">Price</span>
+		        <span class="list_product_photo_header">Photo</span>
+		        <span class="list_product_title">Title</span>
+	        </div>
+	    {% for product in products %}
+            <div class="list_item_{% cycle 'even' 'odd' %} list_item">
+	            <span class="list_product_price">${{ product.price }}</span>
+                <span class="list_product_photo_wrap">{% if product.photo %}<a href="{{ product.get_absolute_url }}"><img src="{{ product.photo|thumbnail:"75x75" }}" class="list_product_photo" /></a>{% endif %}</span>
+	            <span class="list_product_title"><a href="{{ product.get_absolute_url }}">{{ product.title }}</a></span>
+            </div>
+	    {% endfor %}
+        {% include "helpers/navigation.html" %}
+        </div>
+    {% else %}
+        <p>No products are available.</p>
+    {% endif %}
+{% endblock %}

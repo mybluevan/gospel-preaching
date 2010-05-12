@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block main %}
+    <div id="list_page_header">
+        <h2><a href="{% url simple_orders.views.order_confirm %}">Order Confirmation</a></h2>
+    </div>
+    {% if order %}
+        <h3>Order Items</h3>
+        <table class="cart_table">
+            <tr><th>Name</th><th>Price Each</th><th>Quantity</th><th>Total Price</th></tr>
+            {% for item in order.orderitem_set.all %}
+                <tr><td>{{item.product_name}}</td><td>${{item.price_per}}</td><td>{{item.quantity}}</td><td>${{item.price_total}}</td></tr>
+            {% endfor %}
+                <tr><td colspan="3">Subtotal:</td><td>${{ order.sub_total }}</td></tr>
+                <tr><td colspan="3">Shipping Costs:</td><td>${{ order.ship_cost }}</td></tr>
+                <tr><td colspan="3">Total:</td><td>${{ order.total }}</td></tr>
+        </table>
+        <h3>Order Details</h3>
+        <table class="cart_table">
+            <tr><td>Shipping info:</td><td>{{order.ship_name}}<br />{{order.ship_addr}}<br />{{order.ship_city}}, {{order.ship_state}} {{order.ship_zip}}</td></tr>
+            <tr><td>Phone:</td><td>{{order.phone}}</td></tr>
+            <tr><td>E-mail:</td><td>{{order.email}}</td></tr>
+            <tr><td>Additional Instructions:</td><td>{{order.instructions}}</td></tr>
+            <tr><td>Payment Method:</td><td>{{order.get_payment_method_display}}</td></tr>
+        </table>
+        <p>You will recieve an e-mail with payment instructions once your order has been processed.</p>
+    {% else %}
+        <p>You have not submitted an order.</p>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block main %}
+    <div id="list_page_header">
+        <h2><a href="{% url simple_orders.views.checkout %}">Checkout</a></h2>
+    </div>
+    {% if order_items %}
+        <h3>Order Items</h3>
+        <table class="cart_table">
+            <tr><th>Name</th><th>Price Each</th><th>Quantity</th><th>Total Price</th></tr>
+            {% for item in order_items %}
+                <tr><td>{{item.product_name}}</td><td>${{item.price_per}}</td><td>{{item.quantity}}</td><td>${{item.price_total}}</td></tr>
+            {% endfor %}
+                <tr><td colspan="3">Subtotal:</td><td>${{ sub_total }}</td></tr>
+                <tr><td colspan="3">Shipping Costs:</td><td>${{ shipping_cost }}</td></tr>
+                <tr><td colspan="3">Total:</td><td>${{ total }}</td></tr>
+        </table>
+        <h3>Order Details</h3>
+        <form action="{% url simple_orders.views.checkout %}" method="post">
+            <table class="cart_table">
+                {{order_form}}
+            </table>
+            <input type="submit" value="Submit Order" />
+        </form>
+    {% else %}
+        <p>You don't have any items in your cart.</p>
+    {% endif %}
+{% endblock %}

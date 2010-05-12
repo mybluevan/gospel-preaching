@@ -1,0 +1,82 @@
+#list_menu
+{	margin: 0;
+	padding: 0;
+    border:1px solid white; /*IE fix*/
+    clear:both;}
+	
+#list_menu li
+{	float: left;
+    margin: 0px 12px;
+	list-style: none;}
+
+#list_menu li a
+{	display: block;
+	background-color: #DDD;
+	padding: 5px 12px;
+	text-decoration: none;}
+
+#list_menu>li>a
+{   padding-left:32px;
+    background-image: url(../img/down_angle.gif);
+    background-repeat: no-repeat;
+    background-position: left center;}
+
+#list_menu>li>a>img
+{    border:none;}
+
+#list_menu li>a:hover, #list_menu li.selected > a
+{	background-color: #999;}
+
+#list_menu>li>a:hover
+{   background-image: url(../img/down_angle_invert.gif);}
+
+#list_menu>li.selected > a
+{   background-image: url(../img/up_angle_invert.gif);}
+	
+#list_menu>li>div
+{	margin: 0;
+	padding: 0;
+	position: absolute;}
+
+#list_menu>li>div ul
+{   margin: 0;
+	padding: 0;}
+
+#list_menu>li>div ul>li
+{	float: none;
+    margin: 0;}
+
+#list_menu>li>div>ul>li>a
+{	border: 1px solid #999;}
+
+.list_menu_search
+{	background: #DDD;
+	padding: 0;
+    margin: 0;
+	border: 1px solid #999;}
+
+.list_menu_search>form
+{   padding:5px;
+    border-bottom: 1px solid #999;
+    margin:0;}
+/*
+.author_partial_photo
+{   height:50px;
+}
+*/
+.partial_ellipsis, .partial_none
+{   text-align: center;}
+
+.partial_ellipsis
+{   font-weight: bold;}
+
+.author_partial_photo_wrapper
+{   width:50px;
+    display:inline-block;
+    margin-right:5px;
+    vertical-align: middle;}
+
+#list_menu_spacer
+{   clear: both;
+    height: 10px;}
+

@@ -1,0 +1,23 @@
+a#openAllBtn, a#closeAllBtn {
+    padding: 0.1em 0.5em 0.1em 0.5em;
+    margin: 0 0.5em 0 0;
+	border: 1px solid black;
+    text-decoration: none;
+    background-color: white;
+    color: black;
+    font-weight: bold;}
+.btnHide {display:none;}
+#expand .triggerClosed a, #expand .triggerOpen a {
+    background-repeat: no-repeat;
+    background-position: left top;
+    padding-left: 25px;
+    color: #000;
+    text-decoration: none;}
+#expand .triggerOpen a {background-image: url(../img/close_18.gif);}
+#expand .triggerClosed a {background-image: url(../img/open_18.gif);}
+#expand .expandContent {padding-left: 14px;}
+#expand h4{
+	margin: 0;
+    margin-right: 6em;}
+.expandTrigger{margin: 0;}
+.expandControls{margin: 1em 0;}

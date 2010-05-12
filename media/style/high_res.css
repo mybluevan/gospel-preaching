@@ -1,0 +1,93 @@
+html, body {
+	margin:0;
+	padding:0;
+}
+div, ul, li, a
+{
+	margin:0px;
+	padding:0px;
+}
+a
+{
+	text-decoration: none;
+	color: black;
+	font-weight:bold;
+	font-family: serif;
+}
+.outer_band, .inner_band
+{
+	margin-top: -80px;
+	padding:0;
+	height: 160px;
+	position: absolute;
+	top:50%;
+	left:0;
+	background-color:#7898ee;
+}
+.outer_band
+{
+	width: 100%;
+}
+.inner_band
+{
+	width: 950px;
+}
+.right_menu
+{
+	width: 200px;
+	float: right;
+	text-align: left;
+}
+.left_menu
+{
+	width: 200px;
+	float: left;
+	text-align: right;
+}
+.right_menu ul, .left_menu ul
+{
+	list-style-type: none;
+	width: 200px;
+}
+.right_menu li, .left_menu li
+{
+    border-bottom: black solid 1px;
+	width: 200px;
+}
+.right_menu a, .left_menu a, .right_menu span, .left_menu span
+{
+	line-height: 39px;
+	height: 39px;
+	width: 200px;
+	display: block;
+	font-size: smaller;
+}
+.menu_first a, .menu_first span
+{
+	line-height: 38px;
+	height: 38px;
+}
+.logo_large
+{
+	margin:0px;
+	padding:0px;
+	position:absolute;
+	left:250px;
+}
+.wrapper
+{
+	position: relative;
+	width:950px;
+	height:420px;
+	margin-left:auto;
+	margin-right:auto;
+}
+.center_block
+{
+	position:absolute;
+	height:420px;
+	top:50%;
+	margin-top:-210px;
+	text-align:center;
+	width:100%;
+}

@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block main %}
+    <div id="list_page_header">
+        <h2><a href="{% url simple_orders.views.update_cart %}">Cart</a></h2>
+    </div>
+    {% if request.session.cart %}
+        <form action="{% url simple_orders.views.update_cart %}" method="post">
+            {{cart_formset.management_form}}
+            <table class="cart_table">
+                <tr><th>Name</th><th>Price Each</th><th>Quantity</th><th>Total Price</th><th>Delete?</th></tr>
+                {% for form in cart_formset.forms %}
+                    <tr><td>{{form.name}}</td><td>{{form.price_each}}</td><td>{{form.quantity}}</td><td>{{form.total_price}}</td><td>{{form.DELETE}}</td></tr>
+                {% endfor %}
+                <tr><td colspan="4">Subtotal:</td><td>${{ sub_total }}</td></tr>
+                <tr><td colspan="4">Shipping Costs:</td><td>${{ shipping_cost }}</td></tr>
+                <tr><td colspan="4">Total:</td><td>${{ total }}</td></tr>
+            </table>
+            <input type="submit" value="Update" />
+        </form>
+        <p><a href="{% url simple_orders.views.checkout %}" />Checkout</a></p>
+    {% else %}
+        <p>You don't have any items in your cart.</p>
+    {% endif %}
+{% endblock %}

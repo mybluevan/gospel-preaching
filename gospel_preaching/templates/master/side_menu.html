@@ -1,0 +1,27 @@
+{% load custom %}
+
+<div class="side_menu">
+	<ul>
+		{% for app in site_apps %}
+			<li>
+				{% if app.slug|startswith:"mailto:" %}
+					<a href="{{ app.slug }}">{{ app.title }}</a>
+				{% else %}
+					<a {% if request.path|slice:"1:"|startswith:app.slug %}{% if not request.path|startswith:"/store/cart" %}class="current" {% endif %}{% endif %}href="/{{ app.slug }}">{{ app.title }}</a>
+				{% endif %}
+			</li>
+            {% ifequal app.slug "store" %}
+                {% if request.path|startswith:"/store" %}
+                    <li><a {% if request.path|startswith:"/store/cart" %}class="current" {% endif %}href="/store/cart/">Cart</a></li>
+                {% endif %}
+            {% endifequal %}
+		{% endfor %}
+        {% if request.user.is_authenticated %}
+            <li><a href="{% url accounts.views.profile %}">Profile</a></li>
+            <li><a href="/accounts/logout/">Logout</a></li>
+        {% else %}
+            <li><a href="/accounts/login/">Login</a></li>
+        {% endif %}
+	</ul>
+</div>
+

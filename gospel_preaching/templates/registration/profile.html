@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block main %}
+	<h2><a href="{% url accounts.views.profile username=user.username %}">{{ user.username|capfirst }}</a></h2>
+    <p>Name: {{ user.first_name }} {{ user.last_name }}</p>
+    {% if form %}
+        <h3>Change Profile</h3>
+        <form action="" method="post" >
+        <table>
+            {{form.as_p}}
+        </table>
+        <input type="submit" value="Submit" />
+        </form>
+        <p><a href="{% url django.contrib.auth.views.password_change %}">Change Password</a></p>
+    {% endif %}
+    <h3>Comments</h3>
+	{% for comment in user.comment_set.all %}
+        <p>{{ comment.text }}<br /><span class="comment_sub"><a href="{{ comment.article.get_absolute_url }}" >{{ comment.article.title }}</a> on {{ comment.date }} {% if request.user.is_authenticated %}{% ifequal request.user comment.user %}<a href="{% url articles.views.remove_comment comment.pk %}" >Delete</a>{% else %}{% if request.user.is_superuser %}<a href="{% url articles.views.remove_comment comment.pk %}" >Delete</a>{% endif %}{% endifequal %}{% endif %}</span></p>
+    {% endfor %}
+    <h3>Likes</h3>
+    {% for like in user.like_set.all %}
+        <p class="comment_sub"><a href="{{ like.article.get_absolute_url }}" >{{ like.article.title }}</a> on {{ like.date }}</p>
+    {% endfor %}
+{% endblock %}

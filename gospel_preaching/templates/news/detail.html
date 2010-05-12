@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block css %}
+{% endblock %}
+{% block script %}
+{% endblock %}
+
+{% block main %}
+	<h2>{{ update.title }}</h2>
+	<h4>{{ update.date|date:"m/d/y" }}</h4>
+	{{ update.text|safe }}
+{% endblock %}

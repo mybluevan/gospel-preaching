@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load thumbnail %}
+
+{% block css %}
+<link rel="stylesheet" href="{{ MEDIA_URL }}style/list_menu.css" type="text/css" />
+<style type="text/css">
+.list_author
+{
+    visibility: hidden;
+}
+</style>
+{% endblock %}
+
+{% block main %}
+    <div id="list_page_header">
+        <h2><a href="{{ author.get_absolute_url }}">{{ author }}</a></h2>
+        {% if author.photo %}<img class="author_photo" src="{{ author.photo|thumbnail:"200x200" }}"/>{% endif %}
+        {{ author.bio|safe }}
+    </div>
+    {% include "articles/list.html" %}
+{% endblock %}

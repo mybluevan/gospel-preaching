@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block css %}
+{% endblock %}
+{% block script %}
+<script type="text/javascript" src="{{ MEDIA_URL }}scripts/audio-player.js"></script>
+{% endblock %}
+
+{% block main %}
+	<h2>{{ cur_app.header }}</h2>
+	{{ cur_app.description|safe }}
+	<h3>{{ chapter.book.title }} {{ chapter.chapter }}</h3>
+	{% if chapter.audio %}
+		<object id="{{ article.slug }}" height="24" width="290" data="{{ MEDIA_URL }}scripts/player.swf" type="application/x-shockwave-flash">
+			<param value="{{ MEDIA_URL }}scripts/player.swf" name="movie"/>
+			<param value="playerID={{ chapter.book.slug }}_{{ chapter.chapter }}&soundFile={{ MEDIA_URL }}{{ chapter.audio }}" name="FlashVars"/>
+			<param value="high" name="quality"/>
+			<param value="false" name="menu"/>
+			<param value="transparent" name="wmode"/>
+		</object><br />
+		<a href="{{ MEDIA_URL }}{{ chapter.audio }}">Download</a><br /><br />
+	{% endif %}
+    {% if chapter.prev or chapter.next %}
+		<div>
+			{% if chapter.prev %}
+				<a href="{% url gospel_preaching.nt_reading.views.chapter chapter.prev.book.slug chapter.prev.chapter %}">
+					Previous ({{ chapter.prev.book.title }} {{ chapter.prev.chapter }})</a>
+			{% endif %}
+			{% if chapter.next %}
+				<a href="{% url gospel_preaching.nt_reading.views.chapter chapter.next.book.slug chapter.next.chapter %}">
+					Next ({{ chapter.next.book.title }} {{ chapter.next.chapter }})</a>
+			{% endif %}
+		</div>
+	{% endif %}
+	{% if chapter.text %}
+		{{ chapter.text|safe }}
+	{% endif %}
+{% endblock %}

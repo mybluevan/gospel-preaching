@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block main %}
+    <h2><a href="/{{ cur_app.slug }}">{{ cur_app.header }}</a></h2>
+    {{ cur_app.description|safe }}
+    <h3>Ask a Question</h3>
+    <form action="{% url questions.views.ask_question %}" method="post">
+        {% if not request.user.is_authenticated %}
+            <p>{{ question_form.email.label }}: {{ question_form.email }} {{ question_form.email.errors }}</p>
+        {% endif %}
+            {{ question_form.qtext.label }}: {{ question_form.qtext.errors }}<br />{{ question_form.qtext }}
+    <br /><input type="submit" value="Submit" />
+    </form>
+{% endblock %}

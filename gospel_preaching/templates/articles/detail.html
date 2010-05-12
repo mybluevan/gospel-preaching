@@ -1,0 +1,174 @@
+{% extends "base.html" %}
+
+{% block meta %}
+    <meta property="og:title" content="{{ article.title }}"/>
+    <meta property="og:type" content="article"/>
+    <meta property="og:url" content="http://{{request.get_host}}{{ article.get_absolute_url|urlencode }}"/>
+{% endblock %}
+{% block css %}
+<link rel="stylesheet" href="{{ MEDIA_URL }}style/video.css" type="text/css" />
+{% endblock %}
+{% block script %}
+<script type="text/javascript" src="{{ MEDIA_URL }}scripts/audio-player.js"></script>
+<script type="text/javascript" src="{{ MEDIA_URL }}scripts/flowplayer-3.1.0.min.js"></script>
+<script type="text/javascript" src="{{ MEDIA_URL }}scripts/flowplayer.controls-3.0.2.js"></script>
+{% endblock %}
+
+{% block main %}
+	<h2><a href="{{ article.get_absolute_url }}">{{ article.title }}</a></h2>
+	<table class="header_block">	
+		<tr><td>Catagory:</td><td><a href="{{ article.cat.get_absolute_url }}">{{ article.cat.name }}</a></td></tr>
+		<tr><td>Date Uploaded:</td><td>{{ article.date|date:"m/d/y" }}</td></tr>
+		<tr><td>Original Date:</td><td>{{ article.orig_date|date:"m/d/y" }}</td></tr>
+		<tr><td>Author:</td><td><a href="{{ article.author.get_absolute_url }}">{{ article.author.name }}</a></td></tr>
+        <tr><td>Tags:</td><td>
+            {% if article.tags.all %}
+                {% for tag in article.tags.all %}
+                    <a href="{{ tag.get_absolute_url }}">
+                    {{ tag.name }}</a>{% if not forloop.last %},{% endif %}
+                {% endfor %}
+            {% else %}None{% endif %}</td></tr>
+	</table>
+	{{ article.text|safe }}
+
+    <!-- AddThis Button BEGIN -->
+    <div class="addthis_toolbox addthis_default_style">
+    <a href="http://www.addthis.com/bookmark.php?v=250&amp;username=xa-4be319706b92dc95" class="addthis_button_compact">Share</a>
+    <span class="addthis_separator">|</span>
+    <a class="addthis_button_email"></a>
+    <a class="addthis_button_facebook"></a>
+    <a class="addthis_button_twitter"></a>
+    <a class="addthis_button_googlebuzz"></a>
+    <a class="addthis_button_google"></a>
+    <a class="addthis_button_googlereader"></a>
+    <a class="addthis_button_myspace"></a>
+    <a class="addthis_button_friendfeed"></a>
+    <a class="addthis_button_linkedin"></a>
+    <a class="addthis_button_delicious"></a>
+    <a class="addthis_button_stumbleupon"></a>
+    <a class="addthis_button_googletranslate"></a>
+    </div>
+    <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#username=xa-4be319706b92dc95"></script>
+    <!-- AddThis Button END -->
+
+    <iframe src="http://www.facebook.com/plugins/like.php?href=http%253A//{{request.get_host}}{{ article.get_absolute_url|urlencode }}" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:70px;" allowTransparency="true"></iframe>
+
+    <div class="comment_block">
+        <h3>Likes</h3>
+            <p>{% if article.like_set.all %}
+                {% for like in article.like_set.all %}
+                    {{ like.user.first_name }} {{ like.user.last_name }}{% if not forloop.last %},{% endif %}
+                {% endfor %}
+            {% else %}
+                None
+            {% endif %}</p>
+            {% if request.user.is_authenticated %}<p>
+                <a href="{% url articles.views.like slug=article.slug %}"><img src="{{ MEDIA_URL }}img/fav_{{ liked|yesno }}.png" class="like_icon" /></a> <a href="{% url articles.views.like slug=article.slug %}">{% if liked %}Unlike{% else %}Like{% endif %} this article.</a>
+            </p>{% endif %}
+        <h3>Comments</h3>
+        {% for comment in article.comment_set.all %}
+            <p>{{ comment.text }}<br /><span class="comment_sub"><a href="{% url accounts.views.profile username=comment.user.username %}" >{{ comment.user.first_name }} {{ comment.user.last_name }}</a> on {{ comment.date }} {% if request.user.is_authenticated %}{% ifequal request.user comment.user %}<a href="{% url articles.views.remove_comment comment.pk %}" >Delete</a>{% else %}{% if request.user.is_superuser %}<a href="{% url articles.views.remove_comment comment.pk %}" >Delete</a>{% endif %}{% endifequal %}{% endif %}</span></p>
+        {% endfor %}
+        {% if request.user.is_authenticated %}
+            <form action="{{ article.get_absolute_url }}" method="post">
+                {% for field in comment_form %}
+                    {{ field.errors }}
+                    New Comment: <br />{{ field }}
+                {% endfor %}
+            <br /><input type="submit" value="Submit" />
+            </form>
+        {% endif %}
+    </div>
+
+	{% if article.audio_set.all %}
+		<div class="content_block">
+			<h3>Audio</h3>
+			{% for audio in article.audio_set.all %}
+				<p>{{ audio.title }}:<br />
+				<object id="{{ article.slug }}" height="24" width="290" data="{{ MEDIA_URL }}scripts/player.swf" type="application/x-shockwave-flash">
+					<param value="{{ MEDIA_URL }}scripts/player.swf" name="movie"/>
+					<param value="playerID={{ article.slug }}&soundFile={{ audio.src.url }}" name="FlashVars"/>
+					<param value="high" name="quality"/>
+					<param value="false" name="menu"/>
+					<param value="transparent" name="wmode"/>
+				</object><br />
+				<a href="{{ audio.src.url }}">Download</a></p>
+			{% endfor %}
+		</div>
+	{% endif %}
+	{% if article.video_set.all %}
+		<div class="content_block">
+			<h3>Video</h3>
+			{% if article.video_set.all %}
+				{% for video in article.video_set.all %}
+				<p>{{ video.title }}:
+                    {% if video.url %}
+                    <object width="425" height="344" style="display:block;">
+						<param name="movie" value="{{ video.url }}&hl=en&fs=1&rel=0"></param>
+						<param name="allowFullScreen" value="true"></param>
+						<param name="allowscriptaccess" value="always"></param>
+						<embed src="{{ video.url }}&hl=en&fs=1&rel=0" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="425" height="344"></embed>
+					</object>
+                    {% endif %}
+                    {% if video.src %}
+                        {% if video.player %}
+					    <a  
+						     href="{{ video.src.url }}"  
+						     style="display:block;width:425px;height:344px"  
+						     id="player{{ video.id }}"> 
+					    </a>
+					    <!--HTML based control bar: <div id="controls{{ video.id }}" class="video_controls"></div>-->
+					    <script>
+					    <!--
+						    flowplayer("player{{ video.id }}", "{{ MEDIA_URL }}scripts/flowplayer-3.1.0.swf", { 
+							    clip: { 
+								    autoPlay: false, 
+								    autoBuffering: true 
+							    }, 
+
+							    plugins: {
+								    controls: {
+									    url: '{{ MEDIA_URL }}scripts/flowplayer.controls-3.1.0.swf',
+									    backgroundColor: '#000000',
+									    backgroundGradient: '[0.2, 1.0, 0.6]',
+									    buttonColor: '#707070',
+									    sliderColor: '#707070',
+									    bufferColor: '#A0A0A0',
+									    progressColor: '#FF0000',
+									    buttonOverColor: '#A0A0A0',
+									    volumeSliderColor: '#707070',
+									    timeBgColor: '#707070',
+									    timeColor: '#FF1010',
+									    tooltipColor: '#707070'
+								    }
+							    }
+
+						    });
+					    //-->
+					    </script>
+                        {% endif %}					
+                    <a href="{{ video.src.url }}">Download</a></p>
+                    {% endif %}
+				{% endfor %}
+			{% endif %}
+		</div>
+	{% endif %}
+	{% if article.document_set.all %}
+		<div class="content_block">
+			<h3>Document</h3>
+			{% for doc in article.document_set.all %}
+				<p>{{ doc.title }}:
+				<a href="{{ doc.src.url }}">Download</a></p>
+			{% endfor %}
+		</div>
+	{% endif %}
+	{% if article.othermedia_set.all %}
+		<div class="content_block">
+			<h3>Other Media</h3>
+			{% for media in article.othermedia_set.all %}
+				<p>{{ media.title }}:
+				<a href="{{ media.src.url }}">Download</a></p>
+			{% endfor %}
+		</div>
+	{% endif %}
+{% endblock %}

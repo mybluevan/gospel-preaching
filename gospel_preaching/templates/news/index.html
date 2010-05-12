@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block css %}
+{% endblock %}
+{% block script %}
+{% endblock %}
+
+{% block main %}
+<h2>{{ cur_app.header }}</h2>
+{{ cur_app.description|safe }}
+	{% if all_updates %}
+		<div class="list_table">
+			<div class="list_item_odd">
+				<span class="list_title">Title</span>
+				<span class="list_media">Date</span>
+			</div>
+		{% include "helpers/navigation.html" %}
+		{% for update in all_updates %}
+		    <div class="list_item_{% cycle 'even' 'odd' %}">
+				<span class="list_title"><a href="{% url gospel_preaching.news.views.detail update.slug %}">{{ update.title }}</a></span>
+				<span class="list_media">{{ update.date|date:"m/d/Y" }}</span>
+			</div>
+		{% endfor %}
+		{% include "helpers/navigation.html" %}
+		</div>
+	{% else %}
+		<p>No updates are available.</p>
+	{% endif %}
+{% endblock %}

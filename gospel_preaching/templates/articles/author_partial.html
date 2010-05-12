@@ -1,0 +1,15 @@
+{% load thumbnail %}
+
+<ul class="author_partial">
+{% if authors %}
+{% for author in authors %}
+<li class="author_partial_item partial_item"><a href="{{ author.get_absolute_url }}"><span class="author_partial_photo_wrapper">{% if author.photo %}<img class="author_partial_photo" src="{{ author.photo|thumbnail }}"/>{% endif %}</span> {{ author }}</a></li>
+{% endfor %}
+{% if more %}
+<li class="author_partial_item partial_item partial_ellipsis">...</li>
+{% endif %}
+{% else %}
+<li class="author_partial_item partial_item partial_none">None Found</li>
+{% endif %}
+</ul>
+

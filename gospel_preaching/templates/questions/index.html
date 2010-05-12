@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block css %}
+<link rel="stylesheet" href="{{ MEDIA_URL }}style/expandcollapsestyle.css" type="text/css"/>
+{% endblock %}
+{% block script %}
+<script type="text/javascript" src="{{ MEDIA_URL }}scripts/expandcollapse.js"></script>
+{% endblock %}
+
+{% block main %}
+<h2><a href="/{{ cur_app.slug }}">{{ cur_app.header }}</a></h2>
+{{ cur_app.description|safe }}
+<div>Have a question? <a href="{% url questions.views.ask_question %}">Ask it!</a></div>
+<div class="questions">
+	{% if questions %}
+		<div class="expandControls">
+			<a href="#_" id="openAllBtn" class="btnHide">Open All</a>
+			<a href="#_" id="closeAllBtn" class="btnHide">Close All</a>
+		</div>
+		{% include "helpers/navigation.html" %}
+		<div id="expand">
+		{% for question in questions %}
+		    <div class="list_item_{% cycle 'odd' 'even' %} list_item">
+			    <span class="question_list_date">{{ question.date|date:"m/d/Y" }}</span><h4>{{ question.qtext }}</h4>
+			    <div class="expandContent">{{ question.atext|safe }}</div>
+		    </div>
+		{% endfor %}
+		</div>
+		{% include "helpers/navigation.html" %}
+	{% else %}
+		<p>No questions are available.</p>
+	{% endif %}
+</div>
+{% endblock %}

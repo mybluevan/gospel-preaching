@@ -1,0 +1,13 @@
+<ul class="tag_partial">
+{% if tags %}
+{% for tag in tags %}
+<li class="tag_partial_item partial_item"><a href="{{ tag.get_absolute_url }}">{{ tag }}</a></li>
+{% endfor %}
+{% if more %}
+<li class="tag_partial_item partial_item partial_ellipsis">...</li>
+{% endif %}
+{% else %}
+<li class="tag_partial_item partial_item partial_none">None Found</li>
+{% endif %}
+</ul>
+
