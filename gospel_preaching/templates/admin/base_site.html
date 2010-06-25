@@ -1,0 +1,53 @@
+{% extends "admin/base.html" %}
+{% load i18n %}
+
+{% block extrastyle %}
+<style>
+#header{ background-color: #7898EE; }
+#branding h1{ color: #000; }
+#branding h1 a{ font-family:monospace;
+font-size: 1.3em;
+font-weight:bold;
+margin-right: 0.3em;}
+#branding h1 a:visited{ color: #000; }
+#email_form {display:none;}
+</style>
+{% endblock %}
+
+{% block title %}{{ title }} | {% trans 'Gospel Preaching.com admin' %}{% endblock %}
+
+{% block branding %}
+<h1 id="site-name"><a href="/">{% trans 'Gospel Preaching.com' %}</a> {% trans 'administration' %}</h1>
+{% endblock %}
+
+{% block userlinks %}
+    {% url django-admindocs-docroot as docsroot %}
+    {% if docsroot %}
+        <a href="{{ docsroot }}">{% trans 'Documentation' %}</a> /
+    {% endif %}
+    {% if user.is_superuser %}
+        <form action="{{ admin_email_form_url }}" method="post" id="email_form">
+            <input type="hidden" value="cpanel" name="login_theme">
+            <input type="hidden" value="{{ admin_email_redir_url }}" name="goto_uri">
+            <input type="hidden" value="{{ admin_email_user }}" name="user">
+            <input type="hidden" value="{{ admin_email_passwd }}" name="pass">
+        </form>
+        <a href="#" onclick='document.getElementById("email_form").submit(); return false;'>Check E-mail</a> /
+    {% endif %}
+    {% url admin:password_change as password_change_url %}
+    {% if password_change_url %}
+        <a href="{{ password_change_url }}">
+    {% else %}
+        <a href="{{ root_path }}password_change/">
+    {% endif %}
+    {% trans 'Change password' %}</a> /
+    {% url admin:logout as logout_url %}
+    {% if logout_url %}
+        <a href="{{ logout_url }}">
+    {% else %}
+        <a href="{{ root_path }}logout/">
+    {% endif %}
+    {% trans 'Log out' %}</a>
+{% endblock %}
+
+{% block nav-global %}{% endblock %}
