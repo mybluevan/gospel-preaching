@@ -30,7 +30,7 @@ def detail(request, slug=None, pk=None):
 
     liked = False
     if request.user.is_authenticated():
-        liked = (a.like_set.all() and a.like_set.get(user=request.user))
+        liked = (a.like_set.all() and a.like_set.filter(user=request.user))
 
     if request.method == 'POST':
         if not request.user.is_authenticated():
@@ -86,9 +86,9 @@ def like(request, slug=None, pk=None):
     else:
         raise Http404
     if a.like_set.all():
-        ol = a.like_set.get(user=request.user)
+        ol = a.like_set.filter(user=request.user)
         if ol:
-            ol.delete()
+            ol[0].delete()
         else:
             l = Like(article=a, user=request.user)
             l.save()
