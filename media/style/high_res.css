@@ -12,7 +12,7 @@ a
 	text-decoration: none;
 	color: black;
 	font-weight:bold;
-	font-family: serif;
+	font-family: monospace;
 }
 .outer_band, .inner_band
 {
@@ -60,7 +60,7 @@ a
 	height: 39px;
 	width: 200px;
 	display: block;
-	font-size: smaller;
+    font-size: 1.2em;
 }
 .menu_first a, .menu_first span
 {
