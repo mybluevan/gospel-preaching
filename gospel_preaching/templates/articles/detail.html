@@ -31,55 +31,6 @@
 	</table>
 	{{ article.text|safe }}
 
-    <!-- AddThis Button BEGIN -->
-    <div class="addthis_toolbox addthis_default_style">
-    <a href="http://www.addthis.com/bookmark.php?v=250&amp;username=xa-4be319706b92dc95" class="addthis_button_compact">Share</a>
-    <span class="addthis_separator">|</span>
-    <a class="addthis_button_email"></a>
-    <a class="addthis_button_facebook"></a>
-    <a class="addthis_button_twitter"></a>
-    <a class="addthis_button_googlebuzz"></a>
-    <a class="addthis_button_google"></a>
-    <a class="addthis_button_googlereader"></a>
-    <a class="addthis_button_myspace"></a>
-    <a class="addthis_button_friendfeed"></a>
-    <a class="addthis_button_linkedin"></a>
-    <a class="addthis_button_delicious"></a>
-    <a class="addthis_button_stumbleupon"></a>
-    <a class="addthis_button_googletranslate"></a>
-    </div>
-    <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#username=xa-4be319706b92dc95"></script>
-    <!-- AddThis Button END -->
-
-    <iframe src="http://www.facebook.com/plugins/like.php?href=http%253A//{{request.get_host}}{{ article.get_absolute_url|urlencode }}" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:70px;" allowTransparency="true"></iframe>
-
-    <div class="comment_block">
-        <h3>Likes</h3>
-            <p>{% if article.like_set.all %}
-                {% for like in article.like_set.all %}
-                    {{ like.user.first_name }} {{ like.user.last_name }}{% if not forloop.last %},{% endif %}
-                {% endfor %}
-            {% else %}
-                None
-            {% endif %}</p>
-            {% if request.user.is_authenticated %}<p>
-                <a href="{% url articles.views.like slug=article.slug %}"><img src="{{ MEDIA_URL }}img/fav_{{ liked|yesno }}.png" class="like_icon" /></a> <a href="{% url articles.views.like slug=article.slug %}">{% if liked %}Unlike{% else %}Like{% endif %} this article.</a>
-            </p>{% endif %}
-        <h3>Comments</h3>
-        {% for comment in article.comment_set.all %}
-            <p>{{ comment.text }}<br /><span class="comment_sub"><a href="{% url accounts.views.profile username=comment.user.username %}" >{{ comment.user.first_name }} {{ comment.user.last_name }}</a> on {{ comment.date }} {% if request.user.is_authenticated %}{% ifequal request.user comment.user %}<a href="{% url articles.views.remove_comment comment.pk %}" >Delete</a>{% else %}{% if request.user.is_superuser %}<a href="{% url articles.views.remove_comment comment.pk %}" >Delete</a>{% endif %}{% endifequal %}{% endif %}</span></p>
-        {% endfor %}
-        {% if request.user.is_authenticated %}
-            <form action="{{ article.get_absolute_url }}" method="post">
-                {% for field in comment_form %}
-                    {{ field.errors }}
-                    New Comment: <br />{{ field }}
-                {% endfor %}
-            <br /><input type="submit" value="Submit" />
-            </form>
-        {% endif %}
-    </div>
-
 	{% if article.audio_set.all %}
 		<div class="content_block">
 			<h3>Audio</h3>
@@ -155,7 +106,7 @@
 	{% endif %}
 	{% if article.document_set.all %}
 		<div class="content_block">
-			<h3>Document</h3>
+			<h3>Documents</h3>
 			{% for doc in article.document_set.all %}
 				<p>{{ doc.title }}:
 				<a href="{{ doc.src.url }}">Download</a></p>
@@ -171,4 +122,53 @@
 			{% endfor %}
 		</div>
 	{% endif %}
+
+    <!-- AddThis Button BEGIN -->
+    <div class="addthis_toolbox addthis_default_style">
+    <a href="http://www.addthis.com/bookmark.php?v=250&amp;username=xa-4be319706b92dc95" class="addthis_button_compact">Share</a>
+    <span class="addthis_separator">|</span>
+    <a class="addthis_button_email"></a>
+    <a class="addthis_button_facebook"></a>
+    <a class="addthis_button_twitter"></a>
+    <a class="addthis_button_googlebuzz"></a>
+    <a class="addthis_button_google"></a>
+    <a class="addthis_button_googlereader"></a>
+    <a class="addthis_button_myspace"></a>
+    <a class="addthis_button_friendfeed"></a>
+    <a class="addthis_button_linkedin"></a>
+    <a class="addthis_button_delicious"></a>
+    <a class="addthis_button_stumbleupon"></a>
+    <a class="addthis_button_googletranslate"></a>
+    </div>
+    <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#username=xa-4be319706b92dc95"></script>
+    <!-- AddThis Button END -->
+
+    <iframe src="http://www.facebook.com/plugins/like.php?href=http%253A//{{request.get_host}}{{ article.get_absolute_url|urlencode }}" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:70px;" allowTransparency="true"></iframe>
+
+    <div class="comment_block">
+        <h3>Likes</h3>
+            <p>{% if article.like_set.all %}
+                {% for like in article.like_set.all %}
+                    {{ like.user.first_name }} {{ like.user.last_name }}{% if not forloop.last %},{% endif %}
+                {% endfor %}
+            {% else %}
+                None
+            {% endif %}</p>
+            {% if request.user.is_authenticated %}<p>
+                <a href="{% url articles.views.like slug=article.slug %}"><img src="{{ MEDIA_URL }}img/fav_{{ liked|yesno }}.png" class="like_icon" /></a> <a href="{% url articles.views.like slug=article.slug %}">{% if liked %}Unlike{% else %}Like{% endif %} this article.</a>
+            </p>{% endif %}
+        <h3>Comments</h3>
+        {% for comment in article.comment_set.all %}
+            <p>{{ comment.text }}<br /><span class="comment_sub"><a href="{% url accounts.views.profile username=comment.user.username %}" >{{ comment.user.first_name }} {{ comment.user.last_name }}</a> on {{ comment.date }} {% if request.user.is_authenticated %}{% ifequal request.user comment.user %}<a href="{% url articles.views.remove_comment comment.pk %}" >Delete</a>{% else %}{% if request.user.is_superuser %}<a href="{% url articles.views.remove_comment comment.pk %}" >Delete</a>{% endif %}{% endifequal %}{% endif %}</span></p>
+        {% endfor %}
+        {% if request.user.is_authenticated %}
+            <form action="{{ article.get_absolute_url }}" method="post">
+                {% for field in comment_form %}
+                    {{ field.errors }}
+                    New Comment: <br />{{ field }}
+                {% endfor %}
+            <br /><input type="submit" value="Submit" />
+            </form>
+        {% endif %}
+    </div>
 {% endblock %}
