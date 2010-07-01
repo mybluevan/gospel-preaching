@@ -7,7 +7,7 @@
 				{% if app.slug|startswith:"mailto:" %}
 					<a href="{{ app.slug }}">{{ app.title }}</a>
 				{% else %}
-					<a {% if request.path|slice:"1:"|startswith:app.slug %}{% if not request.path|startswith:"/store/cart" %}class="current" {% endif %}{% endif %}href="/{{ app.slug }}">{{ app.title }}</a>
+					<a {% if request.path|slice:"1:"|startswith:app.slug %}{% if not request.path|startswith:"/store/cart" %}class="current" {% endif %}{% endif %}href="/{{ app.slug }}/">{{ app.title }}</a>
 				{% endif %}
 			</li>
             {% ifequal app.slug "store" %}

@@ -245,3 +245,9 @@ a:hover
     display:inline-block;
     width: 15em;
 }
+.footer
+{
+    margin-top: 1.5em;
+    font-size:smaller;
+    font-style:italic;
+}

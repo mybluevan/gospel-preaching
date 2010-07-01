@@ -80,6 +80,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
 #    'facebook.djangofb.FacebookMiddleware',
 #    'socialregistration.middleware.FacebookMiddleware',
+    'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
 )
 
 ROOT_URLCONF = 'gospel_preaching.urls'
@@ -106,11 +107,12 @@ INSTALLED_APPS = (
     'gospel_preaching.accounts',
 #    'socialregistration',
     'django.contrib.sites',
+    'django.contrib.flatpages',
 )
 
 #AUTH_PROFILE_MODULE = 'user_profiles.Profile'
 
-ARTICLES_PER_PAGE = 10
+ARTICLES_PER_PAGE = 20
 
 QUESTIONS_PER_PAGE = 20
 
@@ -120,7 +122,7 @@ AUTHOR_PARTIAL_NUM = 5
 
 TAG_PARTIAL_NUM = 10
 
-USERS_PER_PAGE = 10
+USERS_PER_PAGE = 20
 
 #FACEBOOK_API_KEY = ''
 
