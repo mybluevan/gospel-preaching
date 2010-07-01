@@ -34,3 +34,9 @@ TEMPLATE_DIRS = (
 
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = ''
+
+# Settings for the e-mail form on the admin pages.
+ADMIN_EMAIL_FORM_URL = ''
+ADMIN_EMAIL_REDIR_URL = ''
+ADMIN_EMAIL_USER = ''
+ADMIN_EMAIL_PASSWD = ''
