@@ -144,9 +144,8 @@
     <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#username=xa-4be319706b92dc95"></script>
     <!-- AddThis Button END -->
 
-<fb:like href="http://{{request.get_host}}{{ article.get_absolute_url|urlencode }}"></fb:like>
-<!--    <iframe src="http://www.facebook.com/plugins/like.php?href=http%253A//{{request.get_host}}{{ article.get_absolute_url|urlencode }}" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:70px;" allowTransparency="true"></iframe>
--->
+    <fb:like href="http://{{request.get_host}}{{ article.get_absolute_url|urlencode }}"></fb:like>
+
     <div class="comment_block">
         <h3>Likes</h3>
             <p>{% if article.like_set.all %}
@@ -173,4 +172,20 @@
             </form>
         {% endif %}
     </div>
+{% endblock %}
+
+{% block script_tail %}
+        <div id="fb-root"></div>
+        <script>
+          window.fbAsyncInit = function() {
+            FB.init({appId: '108251729217809', status: true, cookie: true,
+                     xfbml: true});
+          };
+          (function() {
+            var e = document.createElement('script'); e.async = true;
+            e.src = document.location.protocol +
+              '//connect.facebook.net/en_US/all.js';
+            document.getElementById('fb-root').appendChild(e);
+          }());
+        </script>
 {% endblock %}
