@@ -9,7 +9,7 @@ except ImportError:
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
-    ('David Nichols', 'dnichols@dn-webdesign.dnsalias.com'),
+    ('David Nichols', 'mybluevan@gmail.com'),
 )
 
 MANAGERS = ADMINS
@@ -108,6 +108,7 @@ INSTALLED_APPS = (
 #    'socialregistration',
     'django.contrib.sites',
     'django.contrib.flatpages',
+    'cumulus',
 )
 
 #AUTH_PROFILE_MODULE = 'user_profiles.Profile'
@@ -129,3 +130,8 @@ USERS_PER_PAGE = 20
 #FACEBOOK_SECRET_KEY = ''
 
 #AUTHENTICATION_BACKENDS = ('django.contrib.auth.backends.ModelBackend', 'socialregistration.auth.FacebookAuth')
+
+#CUMULUS_USERNAME = ''
+#CUMULUS_API_KEY = ''
+#CUMULUS_CONTAINER = ''
+#DEFAULT_FILE_STORAGE = ''

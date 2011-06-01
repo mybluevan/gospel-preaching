@@ -48,3 +48,8 @@ EMAIL_HOST_USER = ""
 EMAIL_HOST_PASSWORD = ""
 DEFAULT_FROM_EMAIL = ""
 
+# Cumulus cloud files settings
+CUMULUS_USERNAME = ''
+CUMULUS_API_KEY = ''
+CUMULUS_CONTAINER = ''
+DEFAULT_FILE_STORAGE = 'cumulus.storage.CloudFilesStorage'
