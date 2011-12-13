@@ -52,4 +52,5 @@ DEFAULT_FROM_EMAIL = ""
 CUMULUS_USERNAME = ''
 CUMULUS_API_KEY = ''
 CUMULUS_CONTAINER = ''
+CUMULUS_CNAMES = { 'http://c000000.r00.cf0.rackcdn.com': 'http://media.domain.tld' }
 DEFAULT_FILE_STORAGE = 'cumulus.storage.CloudFilesStorage'
