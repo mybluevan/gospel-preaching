@@ -6,7 +6,7 @@ class UpdateAdmin(admin.ModelAdmin):
     search_fields = ['title', 'text']
     date_hierarchy = 'date'
     list_display = ('title', 'date', 'email', 'approved')
-    list_filter = ('approved')
+    list_filter = ('approved',)
     actions = ['mark_approved',]
     def mark_approved(self, request, queryset):
         rows_updated = queryset.update(approved=True)
