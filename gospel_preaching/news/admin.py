@@ -15,6 +15,6 @@ class UpdateAdmin(admin.ModelAdmin):
         else:
             message_bit = "%s updates were" % rows_updated
         self.message_user(request, "%s successfully approved." % message_bit)
-    mark_shipped.short_description = "Approve selected news updates"
+    mark_approved.short_description = "Approve selected news updates"
 
 admin.site.register(Update, UpdateAdmin)
