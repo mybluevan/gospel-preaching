@@ -106,7 +106,7 @@ INSTALLED_APPS = (
     'gospel_preaching.news',
     'gospel_preaching.master',
     'django.contrib.admin',
-#    'gospel_preaching.simple_orders',
+    'gospel_preaching.simple_orders',
     'gospel_preaching.accounts',
 #    'socialregistration',
     'django.contrib.sites',
