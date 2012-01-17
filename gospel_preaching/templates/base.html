@@ -8,10 +8,10 @@
         {% block meta %}{% endblock %}
 		<title>{% block title %}{{ current_site.name }}{% endblock %}</title>
         <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico" />
-		<link rel="stylesheet" href="{{ MEDIA_URL }}style/content.css" type="text/css" />
-		<link rel="stylesheet" href="{{ MEDIA_URL }}style/content_low_res.css" type="text/css" id="var_style" />
+		<link rel="stylesheet" href="{{ STATIC_URL }}style/content.css" type="text/css" />
+		<link rel="stylesheet" href="{{ STATIC_URL }}style/content_low_res.css" type="text/css" id="var_style" />
 		{% block css %}{% endblock %}
-        <script type="text/javascript" src="{{ MEDIA_URL }}scripts/jquery.min.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}scripts/jquery.min.js"></script>
 		{% block script %}{% endblock %}
 	</head>
 
@@ -24,7 +24,7 @@
 		<div class="header_bar">
 			<h1><a href="/">{{ current_site.name }}</a></h1>
 		</div>
-		<a href="/"><!--[if lt IE 7]><img class="logo" src="{{ MEDIA_URL }}logos/simple_logo_150b.png"/><![endif]--><![if gte IE 7]><img class="logo" src="{{ MEDIA_URL }}logos/simple_logo_150.png"/><![endif]></a>
+		<a href="/"><!--[if lt IE 7]><img class="logo" src="{{ STATIC_URL }}logos/simple_logo_150b.png"/><![endif]--><![if gte IE 7]><img class="logo" src="{{ STATIC_URL }}logos/simple_logo_150.png"/><![endif]></a>
 		<script type="text/javascript">
 		<!--
 			if(screen.width > 800){

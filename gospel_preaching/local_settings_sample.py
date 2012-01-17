@@ -16,9 +16,11 @@ MEDIA_ROOT = ''
 # Examples: "http://media.lawrence.com", "http://example.com/media/"
 MEDIA_URL = '/site_media/'
 
+STATIC_URL = '/static/'
+
 # Turns the static media server on for the development environment.
 # Set to False for the production environment.
-STATIC_MEDIA_SERVER = True
+STATIC_MEDIA_SERVER = False
 
 # URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a
 # trailing slash.
