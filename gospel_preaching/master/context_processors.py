@@ -39,6 +39,7 @@ def email(request):
     }
 
 def current_site(request):
+    # A context processor to add the "current site" to the current Context
     try:
         current_site = Site.objects.get_current()
         return {
