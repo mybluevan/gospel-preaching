@@ -73,6 +73,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.contrib.messages.context_processors.messages",
     "gospel_preaching.master.context_processors.apps",
     "gospel_preaching.master.context_processors.email",
+    "gospel_preaching.master.context_processors.current_site",
 )
 
 MIDDLEWARE_CLASSES = (

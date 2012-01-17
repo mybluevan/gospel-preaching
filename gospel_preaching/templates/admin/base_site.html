@@ -14,10 +14,10 @@ margin-right: 0.3em;}
 </style>
 {% endblock %}
 
-{% block title %}{{ title }} | {% trans 'Gospel Preaching.com admin' %}{% endblock %}
+{% block title %}{{ title }} | {{ current_site.name }} {% trans 'admin' %}{% endblock %}
 
 {% block branding %}
-<h1 id="site-name"><a href="/">{% trans 'Gospel Preaching.com' %}</a> {% trans 'administration' %}</h1>
+<h1 id="site-name"><a href="/">{{ current_site.name }}</a> {% trans 'administration' %}</h1>
 {% endblock %}
 
 {% block userlinks %}
@@ -26,11 +26,10 @@ margin-right: 0.3em;}
         <a href="{{ docsroot }}">{% trans 'Documentation' %}</a> /
     {% endif %}
     {% if user.is_superuser %}
-        <form action="{{ admin_email_form_url }}" method="post" id="email_form">
-            <input type="hidden" value="cpanel" name="login_theme">
-            <input type="hidden" value="{{ admin_email_redir_url }}" name="goto_uri">
-            <input type="hidden" value="{{ admin_email_user }}" name="user">
-            <input type="hidden" value="{{ admin_email_passwd }}" name="pass">
+        <form action="{{ admin_email_form_url }}" method="post" id="email_form" target="{{ current_site.domain }}_webmail">
+            <input type="hidden" name="_autologin" value="1" />
+            <input type="hidden" value="{{ admin_email_user }}" name="_user">
+            <input type="hidden" value="{{ admin_email_passwd }}" name="_pass">
         </form>
         <a href="#" onclick='document.getElementById("email_form").submit(); return false;'>Check E-mail</a> /
     {% endif %}
