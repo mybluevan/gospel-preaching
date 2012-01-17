@@ -3,7 +3,7 @@
 {% block css %}
 {% endblock %}
 {% block script %}
-<script type="text/javascript" src="{{ MEDIA_URL }}scripts/audio-player.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}scripts/audio-player.js"></script>
 {% endblock %}
 
 {% block main %}
@@ -12,13 +12,13 @@
 	<h3>{{ chapter.book.title }} {{ chapter.chapter }}</h3>
 	{% if chapter.audio %}
 		<object id="{{ article.slug }}" height="24" width="290" data="{{ MEDIA_URL }}scripts/player.swf" type="application/x-shockwave-flash">
-			<param value="{{ MEDIA_URL }}scripts/player.swf" name="movie"/>
-			<param value="playerID={{ chapter.book.slug }}_{{ chapter.chapter }}&soundFile={{ MEDIA_URL }}{{ chapter.audio }}" name="FlashVars"/>
+			<param value="{{ STATIC_URL }}scripts/player.swf" name="movie"/>
+			<param value="playerID={{ chapter.book.slug }}_{{ chapter.chapter }}&soundFile={{ chapter.audio.url }}" name="FlashVars"/>
 			<param value="high" name="quality"/>
 			<param value="false" name="menu"/>
 			<param value="transparent" name="wmode"/>
 		</object><br />
-		<a href="{{ MEDIA_URL }}{{ chapter.audio }}">Download</a><br /><br />
+		<a href="{{ chapter.audio.url }}">Download</a><br /><br />
 	{% endif %}
     {% if chapter.prev or chapter.next %}
 		<div>

@@ -7,12 +7,12 @@
 {% endblock %}
 {% block title %}{{ article.title }} - {{ current_site.name }}{% endblock %}
 {% block css %}
-        <link rel="stylesheet" href="{{ MEDIA_URL }}style/video.css" type="text/css" />
+        <link rel="stylesheet" href="{{ STATIC_URL }}style/video.css" type="text/css" />
 {% endblock %}
 {% block script %}
-        <script type="text/javascript" src="{{ MEDIA_URL }}scripts/audio-player.js"></script>
-        <script type="text/javascript" src="{{ MEDIA_URL }}scripts/flowplayer-3.1.0.min.js"></script>
-        <script type="text/javascript" src="{{ MEDIA_URL }}scripts/flowplayer.controls-3.0.2.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}scripts/audio-player.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}scripts/flowplayer-3.1.0.min.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}scripts/flowplayer.controls-3.0.2.js"></script>
 {% endblock %}
 
 {% block main %}
@@ -37,8 +37,8 @@
 			<h3>Audio</h3>
 			{% for audio in article.audio_set.all %}
 				<p>{{ audio.title }}:<br />
-				<object id="{{ article.slug }}" height="24" width="290" data="{{ MEDIA_URL }}scripts/player.swf" type="application/x-shockwave-flash">
-					<param value="{{ MEDIA_URL }}scripts/player.swf" name="movie"/>
+				<object id="{{ article.slug }}" height="24" width="290" data="{{ STATIC_URL }}scripts/player.swf" type="application/x-shockwave-flash">
+					<param value="{{ STATIC_URL }}scripts/player.swf" name="movie"/>
 					<param value="playerID={{ article.slug }}&soundFile={{ audio.src.url }}" name="FlashVars"/>
 					<param value="high" name="quality"/>
 					<param value="false" name="menu"/>
@@ -72,7 +72,7 @@
 					    <!--HTML based control bar: <div id="controls{{ video.id }}" class="video_controls"></div>-->
 					    <script>
 					    <!--
-						    flowplayer("player{{ video.id }}", "{{ MEDIA_URL }}scripts/flowplayer-3.1.0.swf", { 
+						    flowplayer("player{{ video.id }}", "{{ STATIC_URL }}scripts/flowplayer-3.1.0.swf", { 
 							    clip: { 
 								    autoPlay: false, 
 								    autoBuffering: true 
@@ -80,7 +80,7 @@
 
 							    plugins: {
 								    controls: {
-									    url: '{{ MEDIA_URL }}scripts/flowplayer.controls-3.1.0.swf',
+									    url: '{{ STATIC_URL }}scripts/flowplayer.controls-3.1.0.swf',
 									    backgroundColor: '#000000',
 									    backgroundGradient: '[0.2, 1.0, 0.6]',
 									    buttonColor: '#707070',
@@ -156,7 +156,7 @@
                 None
             {% endif %}</p>
             {% if request.user.is_authenticated %}<p>
-                <a href="{% url articles.views.like slug=article.slug %}"><img src="{{ MEDIA_URL }}img/fav_{{ liked|yesno }}.png" class="like_icon" /></a> <a href="{% url articles.views.like slug=article.slug %}">{% if liked %}Unlike{% else %}Like{% endif %} this article.</a>
+                <a href="{% url articles.views.like slug=article.slug %}"><img src="{{ STATIC_URL }}img/fav_{{ liked|yesno }}.png" class="like_icon" /></a> <a href="{% url articles.views.like slug=article.slug %}">{% if liked %}Unlike{% else %}Like{% endif %} this article.</a>
             </p>{% endif %}
         <h3>Comments</h3>
         {% for comment in article.comment_set.all %}

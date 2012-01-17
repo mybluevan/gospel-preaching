@@ -3,7 +3,7 @@
 	<head>
 		<meta http-equiv="Content-Style-Type" content="text/css" />
         <meta property="og:site_name" content="{{ current_site.name }}"/>
-        <meta property="og:image" content="http://{{request.get_host}}{{ MEDIA_URL }}logos/logo_100.png"/>
+        <meta property="og:image" content="{{ STATIC_URL }}logos/logo_100.png"/>
         <meta property="fb:admins" content="1145092409"/>
         {% block meta %}{% endblock %}
 		<title>{% block title %}{{ current_site.name }}{% endblock %}</title>
