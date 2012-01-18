@@ -49,6 +49,8 @@ EMAIL_PORT = 25
 EMAIL_HOST_USER = ""
 EMAIL_HOST_PASSWORD = ""
 DEFAULT_FROM_EMAIL = ""
+SERVER_EMAIL = "root@localhost"
+EMAIL_SUBJECT_PREFIX = "[Django] "
 
 # Cumulus cloud files settings
 CUMULUS_USERNAME = ''
