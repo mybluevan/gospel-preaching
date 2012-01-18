@@ -115,6 +115,7 @@ INSTALLED_APPS = (
     'django.contrib.flatpages',
 #    'django.contrib.staticfiles',
     'cumulus',
+    'django.contrib.humanize',
 )
 
 #AUTH_PROFILE_MODULE = 'user_profiles.Profile'
