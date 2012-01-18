@@ -3,7 +3,7 @@
 {% block meta %}
         <meta property="og:title" content="{{ article.title }}"/>
         <meta property="og:type" content="article"/>
-        <meta property="og:url" content="http://{{request.get_host}}{{ article.get_absolute_url|urlencode }}"/>
+        <meta property="og:url" content="http://{{ current_site.domain }}{{ article.get_absolute_url|urlencode }}"/>
 {% endblock %}
 {% block title %}{{ article.title }} - {{ current_site.name }}{% endblock %}
 {% block css %}
@@ -124,43 +124,23 @@
 		</div>
 	{% endif %}
 
-<!-- AddThis Button BEGIN -->
-<div class="addthis_toolbox addthis_default_style ">
-<a class="addthis_button_preferred_1"></a>
-<a class="addthis_button_preferred_2"></a>
-<a class="addthis_button_preferred_3"></a>
-<a class="addthis_button_preferred_4"></a>
-<a class="addthis_button_preferred_5"></a>
-<a class="addthis_button_preferred_6"></a>
-<a class="addthis_button_preferred_7"></a>
-<a class="addthis_button_compact"></a>
-<a class="addthis_counter addthis_bubble_style"></a>
-<a class="addthis_button_google_plusone"></a>
-<a class="addthis_button_tweet" tw:via="gpreaching"></a>
-</div>
-<a class="addthis_button_facebook_like" fb:like:layout="standard"></a>
-<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4f170c59331e6be5"></script>
-<!-- AddThis Button END -->
-
-    <!-- AddThis Button BEGIN
-    <div class="addthis_toolbox addthis_default_style">
-    <a href="http://www.addthis.com/bookmark.php?v=250&amp;username=xa-4be319706b92dc95" class="addthis_button_compact">Share</a>
-    <span class="addthis_separator">|</span>
-    <a class="addthis_button_email"></a>
-    <a class="addthis_button_facebook"></a>
-    <a class="addthis_button_twitter"></a>
-    <a class="addthis_button_google"></a>
-    <a class="addthis_button_myspace"></a>
-    <a class="addthis_button_friendfeed"></a>
-    <a class="addthis_button_linkedin"></a>
-    <a class="addthis_button_delicious"></a>
-    <a class="addthis_button_stumbleupon"></a>
-    <a class="addthis_button_googletranslate"></a>
+    <!-- AddThis Button BEGIN -->
+    <div class="addthis_toolbox addthis_default_style ">
+    <a class="addthis_button_preferred_1"></a>
+    <a class="addthis_button_preferred_2"></a>
+    <a class="addthis_button_preferred_3"></a>
+    <a class="addthis_button_preferred_4"></a>
+    <a class="addthis_button_preferred_5"></a>
+    <a class="addthis_button_preferred_6"></a>
+    <a class="addthis_button_preferred_7"></a>
+    <a class="addthis_button_compact"></a>
+    <a class="addthis_counter addthis_bubble_style"></a>
+    <br /><a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    <a class="addthis_button_tweet" tw:via="gpreaching"></a>
+    <br /><a class="addthis_button_facebook_like" fb:like:layout="standard"></a>
     </div>
-    <script type="text/javascript" src="http{% if request.is_secure %}s{% endif %}://s7.addthis.com/js/250/addthis_widget.js#username=xa-4be319706b92dc95"></script>
+    <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4f170c59331e6be5"></script>
     <!-- AddThis Button END -->
-
-    <!--<fb:like href="http://{{request.get_host}}{{ article.get_absolute_url|urlencode }}"></fb:like>-->
 
     <div class="comment_block">
         <h3>Likes</h3>
@@ -188,20 +168,4 @@
             </form>
         {% endif %}
     </div>
-{% endblock %}
-
-{% block script_tail %}
-        <!--<div id="fb-root"></div>
-        <script>
-          window.fbAsyncInit = function() {
-            FB.init({appId: '108251729217809', status: true, cookie: true,
-                     xfbml: true});
-          };
-          (function() {
-            var e = document.createElement('script'); e.async = true;
-            e.src = document.location.protocol +
-              '//connect.facebook.net/en_US/all.js';
-            document.getElementById('fb-root').appendChild(e);
-          }());
-        </script>-->
 {% endblock %}
