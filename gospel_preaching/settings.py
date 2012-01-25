@@ -118,9 +118,9 @@ _INSTALLED_APPS = (
     'tinymce',
 )
 
-if INSTALLED_APPS:
+try:
     INSTALLED_APPS = INSTALLED_APPS + _INSTALLED_APPS
-else:
+except NameError:
     INSTALLED_APPS = _INSTALLED_APPS
 
 #AUTH_PROFILE_MODULE = 'user_profiles.Profile'
