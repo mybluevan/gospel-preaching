@@ -1,9 +1,10 @@
 {% extends "base.html" %}
+{% load humanize %}
 
 {% block meta %}
         <meta property="og:title" content="{{ article.title }}"/>
         <meta property="og:type" content="article"/>
-        <meta property="og:url" content="http://{{request.get_host}}{{ article.get_absolute_url|urlencode }}"/>
+        <meta property="og:url" content="http://{{ current_site.domain }}{{ article.get_absolute_url|urlencode }}"/>
 {% endblock %}
 {% block title %}{{ article.title }} - {{ current_site.name }}{% endblock %}
 {% block css %}
@@ -19,8 +20,8 @@
 	<h2><a href="{{ article.get_absolute_url }}">{{ article.title }}</a></h2>
 	<table class="header_block">	
 		<tr><td>Catagory:</td><td><a href="{{ article.cat.get_absolute_url }}">{{ article.cat.name }}</a></td></tr>
-		<tr><td>Date Uploaded:</td><td>{{ article.date|date:"m/d/y" }}</td></tr>
-		<tr><td>Original Date:</td><td>{{ article.orig_date|date:"m/d/y" }}</td></tr>
+		<tr><td>Date Uploaded:</td><td>{{ article.date|naturalday:"m/d/Y" }}</td></tr>
+		<tr><td>Original Date:</td><td>{{ article.orig_date|naturalday:"m/d/Y" }}</td></tr>
 		<tr><td>Author:</td><td><a href="{{ article.author.get_absolute_url }}">{{ article.author.name }}</a></td></tr>
         <tr><td>Tags:</td><td>
             {% if article.tags.all %}
@@ -125,26 +126,24 @@
 	{% endif %}
 
     <!-- AddThis Button BEGIN -->
-    <div class="addthis_toolbox addthis_default_style">
-    <a href="http://www.addthis.com/bookmark.php?v=250&amp;username=xa-4be319706b92dc95" class="addthis_button_compact">Share</a>
-    <span class="addthis_separator">|</span>
-    <a class="addthis_button_email"></a>
+    <div class="addthis_toolbox addthis_default_style ">
     <a class="addthis_button_facebook"></a>
     <a class="addthis_button_twitter"></a>
-    <a class="addthis_button_googlebuzz"></a>
-    <a class="addthis_button_google"></a>
-    <a class="addthis_button_googlereader"></a>
-    <a class="addthis_button_myspace"></a>
-    <a class="addthis_button_friendfeed"></a>
-    <a class="addthis_button_linkedin"></a>
-    <a class="addthis_button_delicious"></a>
-    <a class="addthis_button_stumbleupon"></a>
-    <a class="addthis_button_googletranslate"></a>
+    <a class="addthis_button_preferred_1"></a>
+    <a class="addthis_button_preferred_2"></a>
+    <a class="addthis_button_preferred_3"></a>
+    <a class="addthis_button_preferred_4"></a>
+    <a class="addthis_button_compact"></a>
+    <a class="addthis_counter addthis_bubble_style"></a>
     </div>
-    <script type="text/javascript" src="http{% if request.is_secure %}s{% endif %}://s7.addthis.com/js/250/addthis_widget.js#username=xa-4be319706b92dc95"></script>
+    <div>
+        <!--<a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>-->
+        <a class="addthis_button_tweet" tw:via="gpreaching"></a>
+        <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+        <a class="addthis_button_facebook_like" fb:like:layout="standard"></a>
+    </div>
+    <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4f170c59331e6be5"></script>
     <!-- AddThis Button END -->
-
-    <fb:like href="http://{{request.get_host}}{{ article.get_absolute_url|urlencode }}"></fb:like>
 
     <div class="comment_block">
         <h3>Likes</h3>
@@ -172,20 +171,4 @@
             </form>
         {% endif %}
     </div>
-{% endblock %}
-
-{% block script_tail %}
-        <div id="fb-root"></div>
-        <script>
-          window.fbAsyncInit = function() {
-            FB.init({appId: '108251729217809', status: true, cookie: true,
-                     xfbml: true});
-          };
-          (function() {
-            var e = document.createElement('script'); e.async = true;
-            e.src = document.location.protocol +
-              '//connect.facebook.net/en_US/all.js';
-            document.getElementById('fb-root').appendChild(e);
-          }());
-        </script>
 {% endblock %}
