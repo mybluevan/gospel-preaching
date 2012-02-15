@@ -33,13 +33,13 @@ a:hover
 }
 .side_menu, .side_menu ul, .side_menu li
 {
-	width: 225px;
+	width: 200px;
 }
 .side_menu
 {
 	position: absolute;
 	top:0;
-	left: 15px;
+	left: 25px;
 	height: 100%;
 }
 .side_menu ul
@@ -96,7 +96,7 @@ a:hover
 .main
 {
 	position: absolute;
-	left: 265px;
+	left: 250px;
 	top:150px;
 	right: 25px;
     padding-bottom: 2em;
