@@ -29,7 +29,7 @@ MEDIA_URL = '/media/'
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (
-    '/home/david/dev/gospel-preaching/media',
+    '/home/user/gospel-preaching/media',
 )
 
 # Turns the static media server on for the development environment.
@@ -76,3 +76,6 @@ CUMULUS_API_KEY = ''
 CUMULUS_CONTAINER = ''
 CUMULUS_CNAMES = { 'http://c000000.r00.cf0.rackcdn.com': 'http://media.domain.tld' }
 DEFAULT_FILE_STORAGE = 'cumulus.storage.CloudFilesStorage'
+
+BOOKCLUB_ADMIN_EMAILS = ["user@example.com"]
+BOOKCLUB_SUBJECT = ""
