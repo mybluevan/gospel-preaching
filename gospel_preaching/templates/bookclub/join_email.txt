@@ -8,22 +8,10 @@ State: {{ member.state }}
 ZIP: {{ member.zip_code }}
 E-mail: {{ member.email }}
 Phone: {{ member.phone }}
-Commentaries:
-{% if member.commentary_mat %}
-    Matthew
-{% endif %}
-{% if member.commentary_mark %}
-    Mark
-{% endif %}
-{% if member.commentary_acts %}
-    Acts
-{% endif %}
-{% if member.commentary_gal_eph %}
-    Galatians/Ephesians
-{% endif %}
-{% if member.commentary_phil_thes %}
-    Philippians-Thessalonians
-{% endif %}
-{% if member.commentary_tim_philm %}
-    Timothy-Philemon
-{% endif %}
+Commentaries:{% if member.commentary_mat %}
+    Matthew{% endif %}{% if member.commentary_mark %}
+    Mark{% endif %}{% if member.commentary_acts %}
+    Acts{% endif %}{% if member.commentary_gal_eph %}
+    Galatians/Ephesians{% endif %}{% if member.commentary_phil_thes %}
+    Philippians-Thessalonians{% endif %}{% if member.commentary_tim_philm %}
+    Timothy-Philemon{% endif %}
