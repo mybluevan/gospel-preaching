@@ -116,6 +116,7 @@ _INSTALLED_APPS = (
     'cumulus',
     'django.contrib.humanize',
     'tinymce',
+    'gospel_preaching.bookclub',
 )
 
 try:
