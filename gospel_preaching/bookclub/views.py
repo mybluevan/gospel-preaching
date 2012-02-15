@@ -24,13 +24,10 @@ def join(request):
                 subject = settings.BOOKCLUB_SUBJECT
                 from_address = settings.DEFAULT_FROM_EMAIL
                 send_mail(subject, plaintext.render(context), from_address, addresses, fail_silently=True)
+                
+                return HttpResponseRedirect(settings.BOOKCLUB_REDIRECT)
             except AttributeError:
-                pass
-            
-            return HttpResponseRedirect(reverse(join_complete))
+                return HttpResponseRedirect(reverse(join))
     else:
         form = JoinForm()
     return render_to_response('bookclub/join.html', {'join_form': form,}, context_instance = RequestContext(request))
-    
-def join_complete(request):
-    return render_to_response('bookclub/join_complete.html', context_instance = RequestContext(request))
