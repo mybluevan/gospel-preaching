@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+
+{% block main %}
+    <h2><a href="/{{ cur_app.slug }}">{{ cur_app.header }}</a></h2>
+    {{ cur_app.description|safe }}
+    <h3>Join the Bookclub/Order Commentaries - Complete</h3>
+    <p>Thank you for expressing an interest in the brotherhood commentaries. Your information has been successfully submitted.</p>
+{% endblock %}

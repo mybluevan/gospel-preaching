@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block main %}
+    <h2><a href="/{{ cur_app.slug }}">{{ cur_app.header }}</a></h2>
+    {{ cur_app.description|safe }}
+    <h3>Join the Bookclub/Order Commentaries</h3>
+    <p>In order to purchase one or more commentaries - <u>Please fill out the form below and press "Submit"</u></p>
+    <form action="{% url bookclub.views.join %}" method="post">
+        {% for field in join_form %}
+            {% if "commentary_" not in field.html_name %}
+                <p>{{ field.label_tag }}: {{ field }} {{ field.errors }}</p>
+            {% endif %}
+        {% endfor %}
+        <h3>Please send the following commentaries:</h3>
+        {% for field in join_form %}
+            {% if "commentary_" in field.html_name %}
+                <p>{{ field }} {{ field.label_tag }} {{ field.errors }}</p>
+            {% endif %}
+        {% endfor %}
+    <br /><input type="submit" value="Submit" />
+    </form>
+    <p>If you have any questions please contact Allen Bailey at <a href="tel:+1.214.505.8242">214-505-8242</a> (cell) or 4216 Abigale Drive, Yukon, OK 73099 - You can also contact me on Facebook or <a href="mailto:allenbailey@gospelpreaching.com">allenbailey@gospelpreaching.com</a> or <a href="mailto:allen.bailey@yahoo.com">allen.bailey@yahoo.com</a></p>
+{% endblock %}
