@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 
+{% block title %}{{ current_site.name }} - {{ cur_app.title }}{% endblock %}
 {% block main %}
     <h2><a href="/{{ cur_app.slug }}">{{ cur_app.header }}</a></h2>
     {{ cur_app.description|safe }}
