@@ -9,9 +9,9 @@ ZIP: {{ order.zip_code }}
 E-mail: {{ order.email }}
 Phone: {{ order.phone }}
 Commentaries:{% if order.commentary_mat %}
-    Matthew{% endif %}{% if order.commentary_mark %}
-    Mark{% endif %}{% if order.commentary_acts %}
-    Acts{% endif %}{% if order.commentary_gal_eph %}
-    Galatians/Ephesians{% endif %}{% if order.commentary_phil_thes %}
-    Philippians-Thessalonians{% endif %}{% if order.commentary_tim_philm %}
-    Timothy-Philemon{% endif %}
+    Matthew: {{ order.commentary_mat }}{% endif %}{% if order.commentary_mark %}
+    Mark: {{ order.commentary_mark }}{% endif %}{% if order.commentary_acts %}
+    Acts: {{ order.commentary_acts }}{% endif %}{% if order.commentary_gal_eph %}
+    Galatians/Ephesians: {{ order.commentary_gal_eph }}{% endif %}{% if order.commentary_phil_thes %}
+    Philippians-Thessalonians: {{ order.commentary_phil_thes }}{% endif %}{% if order.commentary_tim_philm %}
+    Timothy-Philemon: {{ order.commentary_tim_philm }}{% endif %}

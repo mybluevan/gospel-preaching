@@ -251,3 +251,7 @@ a:hover
     font-size:smaller;
     font-style:italic;
 }
+.errorlist
+{
+    color: red;
+}
