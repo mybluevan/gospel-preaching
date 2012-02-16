@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.contrib.localflavor.us.models import USStateField, PhoneNumberField
 
-class Member(models.Model):
+class Order(models.Model):
     name = models.CharField(max_length=100)
     address = models.CharField(max_length=200)
     city = models.CharField(max_length=50)
@@ -17,7 +17,7 @@ class Member(models.Model):
     commentary_phil_thes = models.BooleanField()
     commentary_tim_philm = models.BooleanField()
     date = models.DateTimeField(auto_now_add=True)
-    user = models.ForeignKey(User, null=True, blank=True)
+    user = models.ForeignKey(User, null=True, blank=True, related_name='bookclub_orders')
     class Meta:
         ordering = ['-date']
     def __unicode__(self):

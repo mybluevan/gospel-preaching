@@ -1,0 +1,17 @@
+New commentary order:
+
+Date Placed: {{ order.date }}
+Name: {{ order.name }}
+Address: {{ order.address }}
+City: {{ order.city }}
+State: {{ order.state }}
+ZIP: {{ order.zip_code }}
+E-mail: {{ order.email }}
+Phone: {{ order.phone }}
+Commentaries:{% if order.commentary_mat %}
+    Matthew{% endif %}{% if order.commentary_mark %}
+    Mark{% endif %}{% if order.commentary_acts %}
+    Acts{% endif %}{% if order.commentary_gal_eph %}
+    Galatians/Ephesians{% endif %}{% if order.commentary_phil_thes %}
+    Philippians-Thessalonians{% endif %}{% if order.commentary_tim_philm %}
+    Timothy-Philemon{% endif %}

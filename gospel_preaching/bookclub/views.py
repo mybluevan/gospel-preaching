@@ -1,6 +1,6 @@
 from django.shortcuts import render_to_response
 from django.http import HttpResponseRedirect
-from bookclub.forms import JoinForm
+from bookclub.forms import OrderForm
 from django.template import RequestContext
 from django.core.urlresolvers import reverse
 from django.template.loader import get_template
@@ -8,17 +8,17 @@ from django.template import Context
 from django.core.mail import send_mail
 from django.conf import settings
 
-def join(request):
+def order(request):
     if request.method == 'POST':
-        form = JoinForm(request.POST)
+        form = OrderForm(request.POST)
         if form.is_valid():
-            m = form.save(commit=False)
+            o = form.save(commit=False)
             if request.user.is_authenticated():
-                m.user = request.user
-            m.save()
+                o.user = request.user
+            o.save()
             
-            plaintext = get_template('bookclub/join_email.txt')
-            context = Context({ 'member': m })
+            plaintext = get_template('bookclub/order_email.txt')
+            context = Context({ 'order': o })
             try:
                 addresses = settings.BOOKCLUB_ADMIN_EMAILS
                 subject = settings.BOOKCLUB_SUBJECT
@@ -27,7 +27,7 @@ def join(request):
                 
                 return HttpResponseRedirect(settings.BOOKCLUB_REDIRECT)
             except AttributeError:
-                return HttpResponseRedirect(reverse(join))
+                return HttpResponseRedirect(reverse(order))
     else:
-        form = JoinForm()
-    return render_to_response('bookclub/join.html', {'join_form': form,}, context_instance = RequestContext(request))
+        form = OrderForm()
+    return render_to_response('bookclub/order.html', {'order_form': form,}, context_instance = RequestContext(request))

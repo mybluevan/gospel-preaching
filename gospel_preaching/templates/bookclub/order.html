@@ -4,16 +4,16 @@
 {% block main %}
     <h2><a href="/{{ cur_app.slug }}">{{ cur_app.header }}</a></h2>
     {{ cur_app.description|safe }}
-    <h3>Join the Bookclub/Order Commentaries</h3>
+    <h3>Order Commentaries/Join the Bookclub</h3>
     <p>In order to purchase one or more commentaries - <u>Please fill out the form below and press "Submit"</u></p>
-    <form action="{% url bookclub.views.join %}" method="post">
-        {% for field in join_form %}
+    <form action="{% url bookclub.views.order %}" method="post">
+        {% for field in order_form %}
             {% if "commentary_" not in field.html_name %}
                 <p>{{ field.label_tag }}: {{ field }} {{ field.errors }}</p>
             {% endif %}
         {% endfor %}
         <h3>Please send the following commentaries:</h3>
-        {% for field in join_form %}
+        {% for field in order_form %}
             {% if "commentary_" in field.html_name %}
                 <p>{{ field }} {{ field.label_tag }} {{ field.errors }}</p>
             {% endif %}
