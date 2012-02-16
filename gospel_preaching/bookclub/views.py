@@ -30,4 +30,8 @@ def order(request):
                 return HttpResponseRedirect(reverse(order))
     else:
         form = OrderForm()
-    return render_to_response('bookclub/order.html', {'order_form': form,}, context_instance = RequestContext(request))
+    try:
+        status_page = settings.BOOKCLUB_STATUS_PAGE
+    except AttributeError:
+        status_page = ''
+    return render_to_response('bookclub/order.html', {'order_form': form, 'status_page': status_page,}, context_instance = RequestContext(request))

@@ -80,3 +80,4 @@ DEFAULT_FILE_STORAGE = 'cumulus.storage.CloudFilesStorage'
 BOOKCLUB_ADMIN_EMAILS = ["user@example.com"]
 BOOKCLUB_SUBJECT = ""
 BOOKCLUB_REDIRECT = "/"
+BOOKCLUB_STATUS_PAGE = ""
