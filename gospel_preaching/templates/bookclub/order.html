@@ -5,7 +5,7 @@
     <h2><a href="/{{ cur_app.slug }}">{{ cur_app.header }}</a></h2>
     {{ cur_app.description|safe }}
     <h3>Status</h3>
-    <p style="text-decoration:underline">For information regarding the current status of the various brotherhood commentaries please visit <a href="{{ status_page }}">this page</a>.</p>
+    <p><a href="{{ status_page }}">For information regarding the current status of the various brotherhood commentaries please visit this page.</a></p>
     <h3>Order Commentaries/Join the Bookclub</h3>
     <p>In order to purchase one or more commentaries - <span style="text-decoration:underline">Please fill out the form below and press "Submit"</span></p>
     <form action="{% url bookclub.views.order %}" method="post">
