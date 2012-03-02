@@ -13,9 +13,12 @@ class Order(models.Model):
     commentary_mat = models.IntegerField(null=True, blank=True)
     commentary_mark = models.IntegerField(null=True, blank=True)
     commentary_acts = models.IntegerField(null=True, blank=True)
+    commentary_first_cor = models.IntegerField(null=True, blank=True)
     commentary_gal_eph = models.IntegerField(null=True, blank=True)
     commentary_phil_thes = models.IntegerField(null=True, blank=True)
     commentary_tim_philm = models.IntegerField(null=True, blank=True)
+    commentary_james = models.IntegerField(null=True, blank=True)
+    commentary_peter_jude = models.IntegerField(null=True, blank=True)
     date = models.DateTimeField(auto_now_add=True)
     user = models.ForeignKey(User, null=True, blank=True, related_name='bookclub_orders')
     class Meta:
