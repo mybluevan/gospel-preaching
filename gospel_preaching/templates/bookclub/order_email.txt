@@ -11,7 +11,10 @@ Phone: {{ order.phone }}
 Commentaries:{% if order.commentary_mat %}
     Matthew: {{ order.commentary_mat }}{% endif %}{% if order.commentary_mark %}
     Mark: {{ order.commentary_mark }}{% endif %}{% if order.commentary_acts %}
-    Acts: {{ order.commentary_acts }}{% endif %}{% if order.commentary_gal_eph %}
+    Acts: {{ order.commentary_acts }}{% endif %}{% if order.commentary_first_cor %}
+    First Corinthians: {{ order.commentary_first_cor }}{% endif %}{% if order.commentary_gal_eph %}
     Galatians/Ephesians: {{ order.commentary_gal_eph }}{% endif %}{% if order.commentary_phil_thes %}
     Philippians-Thessalonians: {{ order.commentary_phil_thes }}{% endif %}{% if order.commentary_tim_philm %}
-    Timothy-Philemon: {{ order.commentary_tim_philm }}{% endif %}
+    Timothy-Philemon: {{ order.commentary_tim_philm }}{% endif %}{% if order.commentary_james %}
+    James: {{ order.commentary_james }}{% endif %}{% if order.commentary_peter_jude %}
+    First Peter-Jude: {{ order.commentary_peter_jude }}{% endif %}
