@@ -5,6 +5,12 @@
     <h2><a href="/{{ cur_app.slug }}">{{ cur_app.header }}</a></h2>
     {{ cur_app.description|safe }}
     <h3>Status</h3>
+    <ul>
+        <li>This page is where you order your commentaries.</li>
+        <li>Commentaries have been written on 22 of the 27 books of the New Testament.</li>
+        <li>Here, you also find the current status of each volume that has been printed.</li>
+        <li>The Book club is a list of people who want each commentary as they become available.</li>
+    </ul>
     <p><a href="{{ status_page }}">For information regarding the current status of the various brotherhood commentaries please visit this page.</a></p>
     <h3>Order Commentaries/Join the Bookclub</h3>
     <p>In order to purchase one or more commentaries - <span style="text-decoration:underline">Please fill out the form below and press "Submit"</span></p>
@@ -15,6 +21,12 @@
             {% endif %}
         {% endfor %}
         <h3>Please send the following commentaries:</h3>
+        <ul>
+            <li>In the square, specify how many copies of each commentary you wish to purchase</li>
+            <li>Remember to buy for your kids and grandkids.</li>
+            <li>These commentaries also make great birthday and graduation gifts.</li>
+            <li>The commentaries are $20.00 each.</li>
+        </ul>
         {% for field in order_form %}
             {% if "commentary_" in field.html_name %}
                 <p>{{ field }} {{ field.label_tag }} {{ field.errors }}</p>
@@ -22,5 +34,21 @@
         {% endfor %}
     <br /><input type="submit" value="Submit" />
     </form>
-    <p>If you have any questions please contact Allen Bailey at <a href="tel:+1.214.505.8242">214-505-8242</a> (cell) or 4216 Abigale Drive, Yukon, OK 73099 - You can also contact me on Facebook or <a href="mailto:allenbailey@gospelpreaching.com">allenbailey@gospelpreaching.com</a> or <a href="mailto:allen.bailey@yahoo.com">allen.bailey@yahoo.com</a></p>
+    <p>If you have any questions or comments please contact Allen Bailey at:</p>
+    <p style="font-weight:bold">Allen Bailey<br />
+    4216 Abigale Drive<br />
+    Yukon, OK 73099</p>
+    <p style="font-weight:bold"><a href="tel:+1.214.505.8242">214-505-8242</a> (cell)<br />
+    <a href="tel:+1.405.265.2218">405-265-2218</a> (home)</p>
+    <p style="font-weight:bold"><a href="mailto:allenbailey@gospelpreaching.com">allenbailey@gospelpreaching.com</a><br />
+    Facebook message<br />
+    Text: <a href="tel:+1.214.505.8242">214-505-8242</a></p>
+    <p>Remaining Volumes to be completed in the Future:</p>
+    <ul>
+        <li>Luke</li>
+        <li>John</li>
+        <li>Romans</li>
+        <li>2 Corinthians</li>
+        <li>Revelation</li>
+    </ul>
 {% endblock %}
