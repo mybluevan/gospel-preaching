@@ -39,5 +39,5 @@ def order(request):
 
 def list_orders(request):
     if request.user.is_authenticated() and request.user.is_staff:
-        return render_to_response('bookclub/order_list.html', {'orders': Order.objects,}, context_instance = RequestContext(request))
+        return render_to_response('bookclub/order_list.html', {'orders': Order.objects.all(),}, context_instance = RequestContext(request))
             
