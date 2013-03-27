@@ -1,6 +1,7 @@
 from django.shortcuts import render_to_response
 from django.http import HttpResponseRedirect
 from bookclub.forms import OrderForm
+from bookclub.models import Order
 from django.template import RequestContext
 from django.core.urlresolvers import reverse
 from django.template.loader import get_template
@@ -35,3 +36,8 @@ def order(request):
     except AttributeError:
         status_page = ''
     return render_to_response('bookclub/order.html', {'order_form': form, 'status_page': status_page,}, context_instance = RequestContext(request))
+
+def list_orders(request):
+    if request.user.is_authenticated() and request.user.is_staff:
+        return render_to_response('bookclub/order_list.html', {'orders': Order.objects,}, context_instance = RequestContext(request))
+            
