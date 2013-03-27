@@ -2,28 +2,28 @@
 <head><title>Order List</title></head>
 <body>
 {% for order in orders %}
-Id: {{ order.id }}
-Date Placed: {{ order.date }}
-Name: {{ order.name }}
-Address: {{ order.address }}
-City: {{ order.city }}
-State: {{ order.state }}
-ZIP: {{ order.zip_code }}
-E-mail: {{ order.email }}
-Phone: {{ order.phone }}
-Is Cell Phone: {{ order.is_cell|yesno:"yes,no" }}
-Join Bookclub: {{ order.join_bookclub|yesno:"yes,no" }}
-Commentaries:{% if order.commentary_mat %}
-&nbsp;&nbsp;&nbsp;&nbsp;Matthew: {{ order.commentary_mat }}{% endif %}{% if order.commentary_mark %}
-&nbsp;&nbsp;&nbsp;&nbsp;Mark: {{ order.commentary_mark }}{% endif %}{% if order.commentary_acts %}
-&nbsp;&nbsp;&nbsp;&nbsp;Acts: {{ order.commentary_acts }}{% endif %}{% if order.commentary_first_cor %}
-&nbsp;&nbsp;&nbsp;&nbsp;First Corinthians: {{ order.commentary_first_cor }}{% endif %}{% if order.commentary_gal_eph %}
-&nbsp;&nbsp;&nbsp;&nbsp;Galatians/Ephesians: {{ order.commentary_gal_eph }}{% endif %}{% if order.commentary_phil_thes %}
-&nbsp;&nbsp;&nbsp;&nbsp;Philippians-Thessalonians: {{ order.commentary_phil_thes }}{% endif %}{% if order.commentary_tim_philm %}
-&nbsp;&nbsp;&nbsp;&nbsp;Timothy-Philemon: {{ order.commentary_tim_philm }}{% endif %}{% if order.commentary_hebrews %}
-&nbsp;&nbsp;&nbsp;&nbsp;Hebrews: {{ order.commentary_hebrews }}{% endif %}{% if order.commentary_james %}
-&nbsp;&nbsp;&nbsp;&nbsp;James: {{ order.commentary_james }}{% endif %}{% if order.commentary_peter_jude %}
-&nbsp;&nbsp;&nbsp;&nbsp;First Peter-Jude: {{ order.commentary_peter_jude }}{% endif %}
-
+Id: {{ order.id }}<br />
+Date Placed: {{ order.date }}<br />
+Name: {{ order.name }}<br />
+Address: {{ order.address }}<br />
+City: {{ order.city }}<br />
+State: {{ order.state }}<br />
+ZIP: {{ order.zip_code }}<br />
+E-mail: {{ order.email }}<br />
+Phone: {{ order.phone }}<br />
+Is Cell Phone: {{ order.is_cell|yesno:"yes,no" }}<br />
+Join Bookclub: {{ order.join_bookclub|yesno:"yes,no" }}<br />
+Commentaries:{% if order.commentary_mat %}<br />
+&nbsp;&nbsp;&nbsp;&nbsp;Matthew: {{ order.commentary_mat }}{% endif %}{% if order.commentary_mark %}<br />
+&nbsp;&nbsp;&nbsp;&nbsp;Mark: {{ order.commentary_mark }}{% endif %}{% if order.commentary_acts %}<br />
+&nbsp;&nbsp;&nbsp;&nbsp;Acts: {{ order.commentary_acts }}{% endif %}{% if order.commentary_first_cor %}<br />
+&nbsp;&nbsp;&nbsp;&nbsp;First Corinthians: {{ order.commentary_first_cor }}{% endif %}{% if order.commentary_gal_eph %}<br />
+&nbsp;&nbsp;&nbsp;&nbsp;Galatians/Ephesians: {{ order.commentary_gal_eph }}{% endif %}{% if order.commentary_phil_thes %}<br />
+&nbsp;&nbsp;&nbsp;&nbsp;Philippians-Thessalonians: {{ order.commentary_phil_thes }}{% endif %}{% if order.commentary_tim_philm %}<br />
+&nbsp;&nbsp;&nbsp;&nbsp;Timothy-Philemon: {{ order.commentary_tim_philm }}{% endif %}{% if order.commentary_hebrews %}<br />
+&nbsp;&nbsp;&nbsp;&nbsp;Hebrews: {{ order.commentary_hebrews }}{% endif %}{% if order.commentary_james %}<br />
+&nbsp;&nbsp;&nbsp;&nbsp;James: {{ order.commentary_james }}{% endif %}{% if order.commentary_peter_jude %}<br />
+&nbsp;&nbsp;&nbsp;&nbsp;First Peter-Jude: {{ order.commentary_peter_jude }}{% endif %}<br />
+<br />
 {% endfor %}
 </body></html>
