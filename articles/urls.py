@@ -1,26 +1,14 @@
-from django.conf.urls.defaults import *
+from django.conf.urls import include, url
+from . import views
 
-# Uncomment the next two lines to enable the admin:
-# from django.contrib import admin
-# admin.autodiscover()
-
-urlpatterns = patterns('articles.views',
-    # Example:
-    # (r'^gospel_preaching/', include('gospel_preaching.foo.urls')),
-
-    # Uncomment the admin/doc line below and add 'django.contrib.admindocs' 
-    # to INSTALLED_APPS to enable admin documentation:
-    # (r'^admin/doc/', include('django.contrib.admindocs.urls')),
-
-    # Uncomment the next line to enable the admin:
-    # (r'^admin/(.*)', admin.site.root),
-    (r'^$', 'index'),
-    (r'^ajax/authors/$', 'author_partial'),
-    (r'^ajax/tags/$', 'tag_partial'),
-    (r'^cat/(?P<slug>[a-zA-Z0-9_-]+)/$', 'cat'),
-    (r'^tag/(?P<slug>[a-zA-Z0-9_-]+)/$', 'tag'),
-    (r'^author/(?P<slug>[a-zA-Z0-9_-]+)/$', 'author'),
-    (r'^remove-comment/(?P<pk>[0-9]+)$', 'remove_comment'),
-    (r'^(?P<slug>[a-zA-Z0-9_-]+)/like/$', 'like'),
-    (r'^(?P<slug>[a-zA-Z0-9_-]+)/$', 'detail'),
-)
+urlpatterns = [
+    url(r'^$', views.article_list, name='articles_article_list'),
+    url(r'^ajax/authors/$', views.author_partial, name='articles_author_partial'),
+    url(r'^ajax/tags/$', views.tag_partial, name='articles_tag_partial'),
+    url(r'^cat/(?P<slug>[a-zA-Z0-9_-]+)/$', views.category_detail, name='articles_category_detail'),
+    url(r'^tag/(?P<slug>[a-zA-Z0-9_-]+)/$', views.tag_detail, name='articles_tag_detail'),
+    url(r'^author/(?P<slug>[a-zA-Z0-9_-]+)/$', views.author_detail, name='articles_author_detail'),
+    url(r'^remove-comment/(?P<pk>[0-9]+)$', views.comment_remove, name='articles_comment_remove'),
+    url(r'^(?P<slug>[a-zA-Z0-9_-]+)/like/$', views.article_like, name='articles_article_like'),
+    url(r'^(?P<slug>[a-zA-Z0-9_-]+)/$', views.article_detail, name='articles_article_detail'),
+]

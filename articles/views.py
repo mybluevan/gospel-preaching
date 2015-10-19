@@ -10,7 +10,7 @@ from django import forms
 from django.contrib.auth.views import login
 from django.core.urlresolvers import reverse
 
-def index(request):
+def article_list(request):
     order = request.GET.get('order', '-date')
     page = request.GET.get('page', 1)
     try:
@@ -20,7 +20,7 @@ def index(request):
     pager = Paginator(Article.objects.all().order_by(order), perpage)
     return render_to_response('articles/index.html', {'articles': pager.page(page).object_list, 'order': order, 'page': pager.page(page), 'pager': pager, 'cats': Category.objects.all()}, context_instance = RequestContext(request))
 
-def detail(request, slug=None, pk=None):
+def article_detail(request, slug=None, pk=None):
     if slug:
         a = get_object_or_404(Article, slug__exact=slug)
     elif pk:
@@ -44,7 +44,7 @@ def detail(request, slug=None, pk=None):
         form = CommentForm()
     return render_to_response('articles/detail.html', {'article': a, 'comment_form': form, 'liked': liked }, context_instance = RequestContext(request))
 
-def cat(request, slug):
+def category_detail(request, slug):
     order = request.GET.get('order', '-date')
     page = request.GET.get('page', 1)
     try:
@@ -55,7 +55,7 @@ def cat(request, slug):
     pager = Paginator(c.article_set.all().order_by(order), perpage)
     return render_to_response('articles/cat.html', {'cat': c, 'articles': pager.page(page).object_list, 'order': order, 'page': pager.page(page), 'pager': pager, 'cats': Category.objects.all()}, context_instance = RequestContext(request))
 
-def tag(request, slug):
+def tag_detail(request, slug):
     order = request.GET.get('order', '-date')
     page = request.GET.get('page', 1)
     try:
@@ -66,7 +66,7 @@ def tag(request, slug):
     pager = Paginator(t.article_set.all().order_by(order), perpage)
     return render_to_response('articles/tag.html', {'tag': t, 'articles': pager.page(page).object_list, 'order': order, 'page': pager.page(page), 'pager': pager, 'cats': Category.objects.all()}, context_instance = RequestContext(request))
 
-def author(request, slug):
+def author_detail(request, slug):
     order = request.GET.get('order', '-date')
     page = request.GET.get('page', 1)
     try:
@@ -78,7 +78,7 @@ def author(request, slug):
     return render_to_response('articles/author.html', {'author': a, 'articles': pager.page(page).object_list, 'order': order, 'page': pager.page(page), 'pager': pager, 'cats': Category.objects.all()}, context_instance = RequestContext(request))
 
 @login_required
-def like(request, slug=None, pk=None):
+def article_like(request, slug=None, pk=None):
     if slug:
         a = get_object_or_404(Article, slug__exact=slug)
     elif pk:
@@ -99,7 +99,7 @@ def like(request, slug=None, pk=None):
     return HttpResponseRedirect(a.get_absolute_url())
 
 @login_required
-def remove_comment(request, pk):
+def comment_remove(request, pk):
     c = get_object_or_404(Comment, pk=pk)
     if (c.user == request.user) or request.user.is_superuser:
         c.delete()

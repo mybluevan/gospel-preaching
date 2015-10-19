@@ -11,7 +11,7 @@ from django.contrib.auth.views import login
 from django.core.urlresolvers import reverse
 from django.contrib.auth.forms import PasswordChangeForm
 
-def index(request):
+def profile_list(request):
     page = request.GET.get('page', 1)
     try:
         perpage = settings.USERS_PER_PAGE
@@ -20,7 +20,7 @@ def index(request):
     pager = Paginator(User.objects.filter(is_active=True).order_by('username'), perpage)
     return render_to_response('registration/index.html', {'users': pager.page(page).object_list,}, context_instance = RequestContext(request))
 
-def profile(request, username=None):
+def profile_detail(request, username=None):
     form = None
     if not username:
         if request.user.is_authenticated():

@@ -1,23 +1,11 @@
-from django.conf.urls.defaults import *
+from django.conf.urls import include, url
+from . import views
 
-# Uncomment the next two lines to enable the admin:
-# from django.contrib import admin
-# admin.autodiscover()
-
-urlpatterns = patterns('simple_orders.views',
-    # Example:
-    # (r'^gospel_preaching/', include('gospel_preaching.foo.urls')),
-
-    # Uncomment the admin/doc line below and add 'django.contrib.admindocs' 
-    # to INSTALLED_APPS to enable admin documentation:
-    # (r'^admin/doc/', include('django.contrib.admindocs.urls')),
-
-    # Uncomment the next line to enable the admin:
-    # (r'^admin/(.*)', admin.site.root),
-    (r'^$', 'product_index'),
-    (r'^cart/$', 'update_cart'),
-    (r'^cart/checkout/$', 'checkout'),
-    (r'^cart/order-confirmation/$', 'order_confirm'),
-    (r'^products/(?P<slug>[a-zA-Z0-9_-]+)/add-to-cart/$', 'add_to_cart'),
-    (r'^products/(?P<slug>[a-zA-Z0-9_-]+)/$', 'product_detail'),
-)
+urlpatterns = [
+    url(r'^$', views.product_list, name='simple_orders_product_list'),
+    url(r'^cart/$', views.cart_detail, name='simple_orders_cart_detail'),
+    url(r'^cart/checkout/$', views.cart_checkout, name='simple_orders_cart_checkout'),
+    url(r'^cart/order-confirmation/$', views.order_confirm, name='simple_orders_order_confirm'),
+    url(r'^products/(?P<slug>[a-zA-Z0-9_-]+)/add-to-cart/$', views.product_add_to_cart, name='simple_orders_product_add_to_cart'),
+    url(r'^products/(?P<slug>[a-zA-Z0-9_-]+)/$', views.product_detail, name='simple_orders_product_detail'),
+]

@@ -7,7 +7,7 @@ from django.core.paginator import Paginator
 from django.conf import settings
 from django.core.urlresolvers import reverse
 
-def product_index(request):
+def product_list(request):
     page = request.GET.get('page', 1)
     try:
         perpage = settings.PRODUCTS_PER_PAGE
@@ -29,7 +29,7 @@ def order_confirm(request):
     order = request.session.get('order', None)
     return render_to_response('simple_orders/order_confirm.html', {'order': order}, context_instance = RequestContext(request))
 
-def checkout(request):
+def cart_checkout(request):
     order = Order()
     if request.method == 'POST':
         cart = request.session.get('cart', list())
@@ -62,7 +62,7 @@ def checkout(request):
         total = order.calc_total(cart)
     return render_to_response('simple_orders/checkout.html', {'order_form': form, 'order_items': order_items, 'shipping_cost': shipping_cost, 'total': total, 'sub_total': sub_total}, context_instance = RequestContext(request))
 
-def add_to_cart(request, slug):
+def product_add_to_cart(request, slug):
     quantity = request.POST.get('quantity', 1)
     p = get_object_or_404(Product, slug__exact=slug)
     cart = request.session.get('cart', list())
@@ -71,7 +71,7 @@ def add_to_cart(request, slug):
     request.session['cart'] = cart
     return HttpResponseRedirect(p.get_absolute_url())
 
-def update_cart(request):
+def cart_detail(request):
     order = Order()
     if request.method == 'POST':
         cart = request.session.get('cart', list())

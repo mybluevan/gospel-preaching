@@ -9,7 +9,7 @@ from django.template import Context
 from django.core.mail import send_mail
 from django.conf import settings
 
-def order(request):
+def order_create(request):
     if request.method == 'POST':
         form = OrderForm(request.POST)
         if form.is_valid():
@@ -37,7 +37,7 @@ def order(request):
         status_page = ''
     return render_to_response('bookclub/order.html', {'order_form': form, 'status_page': status_page,}, context_instance = RequestContext(request))
 
-def list_orders(request):
+def order_list(request):
     if request.user.is_authenticated() and request.user.is_staff:
         return render_to_response('bookclub/order_list.html', {'orders': Order.objects.all(),}, context_instance = RequestContext(request))
     else: raise Http404

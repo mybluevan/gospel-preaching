@@ -7,7 +7,7 @@ from django.core.paginator import Paginator
 from django.conf import settings
 from django.core.urlresolvers import reverse
 
-def index(request):
+def question_list(request):
     page = request.GET.get('page', 1)
     try:
         perpage = settings.QUESTIONS_PER_PAGE
@@ -16,11 +16,11 @@ def index(request):
     pager = Paginator(Question.objects.filter(published=True), perpage)
     return render_to_response('questions/index.html', {'questions': pager.page(page).object_list, 'order': None, 'page': pager.page(page), 'pager': pager}, context_instance = RequestContext(request))
 '''
-def detail(request, pk):
+def question_detail(request, pk):
     q = get_object_or_404(Question, pk=pk)
     return render_to_response('questions/detail.html', {'question': q,}, context_instance = RequestContext(request))
 '''
-def ask_question(request):
+def question_create(request):
     if request.method == 'POST':
         form = QuestionForm(request.POST)
         if form.is_valid():
