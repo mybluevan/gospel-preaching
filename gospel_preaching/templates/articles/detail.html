@@ -18,7 +18,7 @@
 
 {% block main %}
 	<h2><a href="{{ article.get_absolute_url }}">{{ article.title }}</a></h2>
-	<table class="header_block">	
+	<table class="header_block">
 		<tr><td>Catagory:</td><td><a href="{{ article.cat.get_absolute_url }}">{{ article.cat.name }}</a></td></tr>
 		<tr><td>Date Uploaded:</td><td>{{ article.date|naturalday:"m/d/Y" }}</td></tr>
 		<tr><td>Original Date:</td><td>{{ article.orig_date|naturalday:"m/d/Y" }}</td></tr>
@@ -38,13 +38,16 @@
 			<h3>Audio</h3>
 			{% for audio in article.audio_set.all %}
 				<p>{{ audio.title }}:<br />
-				<object id="{{ article.slug }}" height="24" width="290" data="{{ STATIC_URL }}scripts/player.swf" type="application/x-shockwave-flash">
-					<param value="{{ STATIC_URL }}scripts/player.swf" name="movie"/>
-					<param value="playerID={{ article.slug }}&soundFile={{ audio.src.url }}" name="FlashVars"/>
-					<param value="high" name="quality"/>
-					<param value="false" name="menu"/>
-					<param value="transparent" name="wmode"/>
-				</object><br />
+          <audio controls>
+          <source src="{{ audio.src.url }}">
+          <object id="{{ article.slug }}" height="24" width="290" data="{{ STATIC_URL }}scripts/player.swf" type="application/x-shockwave-flash">
+          	<param value="{{ STATIC_URL }}scripts/player.swf" name="movie"/>
+          	<param value="playerID={{ article.slug }}&soundFile={{ audio.src.url }}" name="FlashVars"/>
+          	<param value="high" name="quality"/>
+          	<param value="false" name="menu"/>
+          	<param value="transparent" name="wmode"/>
+          </object>
+          </audio><br />
 				<a href="{{ audio.src.url }}">Download</a></p>
 			{% endfor %}
 		</div>
@@ -65,19 +68,21 @@
                     {% endif %}
                     {% if video.src %}
                         {% if video.player %}
-					    <a  
-						     href="{{ video.src.url }}"  
-						     style="display:block;width:425px;height:344px"  
-						     id="player{{ video.id }}"> 
+                        <video width="425" height="344" controls>
+                          <source src="{{ video.src.url }}">
+					    <a
+						     href="{{ video.src.url }}"
+						     style="display:block;width:425px;height:344px"
+						     id="player{{ video.id }}">
 					    </a>
 					    <!--HTML based control bar: <div id="controls{{ video.id }}" class="video_controls"></div>-->
 					    <script>
 					    <!--
-						    flowplayer("player{{ video.id }}", "{{ STATIC_URL }}scripts/flowplayer-3.1.0.swf", { 
-							    clip: { 
-								    autoPlay: false, 
-								    autoBuffering: true 
-							    }, 
+						    flowplayer("player{{ video.id }}", "{{ STATIC_URL }}scripts/flowplayer-3.1.0.swf", {
+							    clip: {
+								    autoPlay: false,
+								    autoBuffering: true
+							    },
 
 							    plugins: {
 								    controls: {
@@ -98,8 +103,8 @@
 
 						    });
 					    //-->
-					    </script>
-                        {% endif %}					
+					    </script></video>
+                        {% endif %}
                     <a href="{{ video.src.url }}">Download</a></p>
                     {% endif %}
 				{% endfor %}
@@ -124,26 +129,6 @@
 			{% endfor %}
 		</div>
 	{% endif %}
-
-    <!-- AddThis Button BEGIN -->
-    <div class="addthis_toolbox addthis_default_style ">
-    <a class="addthis_button_facebook"></a>
-    <a class="addthis_button_twitter"></a>
-    <a class="addthis_button_preferred_1"></a>
-    <a class="addthis_button_preferred_2"></a>
-    <a class="addthis_button_preferred_3"></a>
-    <a class="addthis_button_preferred_4"></a>
-    <a class="addthis_button_compact"></a>
-    <a class="addthis_counter addthis_bubble_style"></a>
-    </div>
-    <div>
-        <!--<a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>-->
-        <a class="addthis_button_tweet" tw:via="gpreaching"></a>
-        <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
-        <a class="addthis_button_facebook_like" fb:like:layout="standard"></a>
-    </div>
-    <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4f170c59331e6be5"></script>
-    <!-- AddThis Button END -->
 
     <div class="comment_block">
         <h3>Likes</h3>
